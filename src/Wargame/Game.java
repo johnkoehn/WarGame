@@ -94,7 +94,7 @@ public class Game {
 			
 			if(Keyboard.isKeyPressed(Key.W))
 			{
-				//unit.updateY((float) -1);
+				unit.updateY((float) -1);
 				camera.update(0, -1);
 			}
 			if (Keyboard.isKeyPressed(Key.S))
