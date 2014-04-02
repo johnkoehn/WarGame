@@ -32,4 +32,6 @@ public boolean isOccupied()
 //make the tile occupied
 public void makeOccupied()
 {occupied = true;}
+public void makeUnOccupied()
+{occupied = false;}
 }
