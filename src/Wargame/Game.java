@@ -9,9 +9,10 @@ import org.jsfml.window.event.Event.Type;
 public class Game {
 	private int winWidth;
 	private int winHeight;
-	RenderWindow window;
-	Event event;
-	Color backColor;
+	private RenderWindow window;
+	private Event event;
+	private Color backColor;
+	private Unit unit;
 	
 	/***
 	 * @param fwinWidth
@@ -29,6 +30,9 @@ public class Game {
 		//initialize the window
 		VideoMode mode = new VideoMode(winWidth, winHeight);
 		window = new RenderWindow(mode, title);
+		
+		//initialize the unit
+		unit = new Unit(30, 40, 50);
 	}
 	
 	int getWidth()
@@ -58,14 +62,26 @@ public class Game {
 					window.close();
 				}
 				
+				//check for input
+				
 				//clear the window and prep for the new frame
 				window.clear(backColor);
+				
+				//draw the units
+				window.draw(unit.getCircle());
 				
 				window.display();
 			}
 		}
 	}
 	
+	private void checkInput()
+	{
+		if(event.type == Type.KEY_PRESSED)
+		{
+			//if(event.asKeyEvent() == 'W')
+		}
+	}
 	public static void main(String args[])
 	{
 		Game game = new Game(800, 600, "WarGame!");
