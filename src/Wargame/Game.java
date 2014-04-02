@@ -1,10 +1,15 @@
 package Wargame;
+import java.io.IOException;
+
 import org.jsfml.*;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.window.Keyboard;
+import org.jsfml.window.Keyboard.Key;
 import org.jsfml.window.VideoMode;
 import org.jsfml.window.event.Event;
 import org.jsfml.window.event.Event.Type;
+import org.jsfml.window.event.KeyEvent;
 
 public class Game {
 	private int winWidth;
@@ -13,14 +18,16 @@ public class Game {
 	private Event event;
 	private Color backColor;
 	private Unit unit;
+	private Camera camera;
 	
 	/***
 	 * @param fwinWidth
 	 * @param fwinHeight
 	 * @param title
 	 * Give the windows width, height and title
+	 * @throws IOException 
 	 */
-	Game(int fwinWidth, int fwinHeight, String title)
+	Game(int fwinWidth, int fwinHeight, String title) throws IOException
 	{
 		winWidth = fwinWidth;
 		winHeight = fwinHeight;
@@ -32,7 +39,9 @@ public class Game {
 		window = new RenderWindow(mode, title);
 		
 		//initialize the unit
-		unit = new Unit(30, 40, 50);
+		unit = new Unit(50, 50, "sprite1.png");
+		
+		setViewToUnit();
 	}
 	
 	int getWidth()
@@ -63,12 +72,15 @@ public class Game {
 				}
 				
 				//check for input
+				checkInput();
 				
 				//clear the window and prep for the new frame
 				window.clear(backColor);
 				
+				//set the view 
+				window.setView(camera.getView());
 				//draw the units
-				window.draw(unit.getCircle());
+				window.draw(unit.getUnit());
 				
 				window.display();
 			}
@@ -79,16 +91,55 @@ public class Game {
 	{
 		if(event.type == Type.KEY_PRESSED)
 		{
-			//if(event.asKeyEvent() == 'W')
+			
+			if(Keyboard.isKeyPressed(Key.W))
+			{
+				//unit.updateY((float) -1);
+				camera.update(0, -1);
+			}
+			if (Keyboard.isKeyPressed(Key.S))
+			{
+				//unit.updateY((float) 1);
+				camera.update(0,  1);
+			}
+			if (Keyboard.isKeyPressed(Key.A))
+			{
+				//unit.updateX((float) -1);
+				camera.update(-1, 0);
+			}
+			if (Keyboard.isKeyPressed(Key.D))
+			{
+				//unit.updateX((float) 1);
+				//camera.update(1,  0);
+				camera.zoom((float) 1.001);
+			}
 		}
 	}
-	public static void main(String args[])
+	
+	/**
+	 * Method sets the play view using the camera class
+	 */
+	private void setViewToUnit()
+	{
+		//set the view to the player's unit
+		//start by finding the center of the unit
+		float xCenter = unit.getWidth() / 2;
+		float yCenter = unit.getHeight() / 2;
+		
+		//now find the (x,y) position of the center of the sprite
+		float xPos = unit.getX() + xCenter;
+		float yPos = unit.getY() + yCenter;
+		
+		camera = new Camera(xPos, yPos, (float) winWidth, (float) winHeight);
+	}
+	
+	public static void main(String args[]) throws IOException
 	{
 		Game game = new Game(800, 600, "WarGame!");
 		game.runGame();
 	}
 	
-	
+
 	
 
 }
