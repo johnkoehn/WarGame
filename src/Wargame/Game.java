@@ -17,7 +17,7 @@ public class Game {
 	private RenderWindow window;
 	private Event event;
 	private Color backColor;
-	private Unit unit;
+	private Actor actor;
 	private Camera camera;
 	
 	/***
@@ -38,10 +38,10 @@ public class Game {
 		VideoMode mode = new VideoMode(winWidth, winHeight);
 		window = new RenderWindow(mode, title);
 		
-		//initialize the unit
-		unit = new Unit(50, 50, "sprite1.png");
+		//initialize the Actor
+		actor = new Actor(50, 50, "sprite1.png");
 		
-		setViewToUnit();
+		setViewToActor();
 	}
 	
 	int getWidth()
@@ -79,8 +79,8 @@ public class Game {
 				
 				//set the view 
 				window.setView(camera.getView());
-				//draw the units
-				window.draw(unit.getUnit());
+				//draw the Actors
+				window.draw(actor.getActor());
 				
 				window.display();
 			}
@@ -94,22 +94,22 @@ public class Game {
 			
 			if(Keyboard.isKeyPressed(Key.W))
 			{
-				//unit.updateY((float) -1);
-				camera.update(0, -1);
+				actor.updateY((float) -1);
+				//camera.update(0, -1);
 			}
 			if (Keyboard.isKeyPressed(Key.S))
 			{
-				//unit.updateY((float) 1);
-				camera.update(0,  1);
+				actor.updateY((float) 1);
+				//camera.update(0,  1);
 			}
 			if (Keyboard.isKeyPressed(Key.A))
 			{
-				//unit.updateX((float) -1);
-				camera.update(-1, 0);
+				actor.updateX((float) -1);
+				//camera.update(-1, 0);
 			}
 			if (Keyboard.isKeyPressed(Key.D))
 			{
-				//unit.updateX((float) 1);
+				actor.updateX((float) 1);
 				//camera.update(1,  0);
 				camera.zoom((float) 1.001);
 			}
@@ -119,16 +119,16 @@ public class Game {
 	/**
 	 * Method sets the play view using the camera class
 	 */
-	private void setViewToUnit()
+	private void setViewToActor()
 	{
-		//set the view to the player's unit
-		//start by finding the center of the unit
-		float xCenter = unit.getWidth() / 2;
-		float yCenter = unit.getHeight() / 2;
+		//set the view to the player's Actor
+		//start by finding the center of the Actor
+		float xCenter = actor.getWidth() / 2;
+		float yCenter = actor.getHeight() / 2;
 		
 		//now find the (x,y) position of the center of the sprite
-		float xPos = unit.getX() + xCenter;
-		float yPos = unit.getY() + yCenter;
+		float xPos = actor.getX() + xCenter;
+		float yPos = actor.getY() + yCenter;
 		
 		camera = new Camera(xPos, yPos, (float) winWidth, (float) winHeight);
 	}
