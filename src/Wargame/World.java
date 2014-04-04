@@ -11,4 +11,11 @@ public class World {
 	{}
 	
 
+	/*Helper method to calculate the damage value for an attack
+	 * to implement terrain defense values, need a way to select a space on the map and access
+	 * the unit + terrain objects
+	 */
+	
+	private int damageGiven(Unit attacker, Unit defender)
+	{int damageFinal = 
 }
