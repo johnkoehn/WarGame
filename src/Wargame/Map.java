@@ -132,6 +132,7 @@ public class Map {
 		//now use the dummyString to calculate the number of columns
 		dummyString = dummyString.replaceAll("\\s+", "");
 		mapWidth = dummyString.length(); 
+		scanner.close();
 		
 	}
 	
