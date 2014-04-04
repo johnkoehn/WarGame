@@ -27,6 +27,8 @@ public class Camera {
 	public void update(float deltaX, float deltaY)
 	{
 		view.move(deltaX, deltaY);
+		xPos += deltaX;
+		yPos += deltaY;
 	}
 	
 	public void zoom(float factor)
@@ -38,5 +40,8 @@ public class Camera {
 	{
 		return view;
 	}
+	
+	public float getX() { return xPos; }
+	public float getY() { return yPos; }
 
 }

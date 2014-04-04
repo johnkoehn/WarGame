@@ -3,6 +3,7 @@ import java.io.IOException;
 
 import org.jsfml.*;
 import org.jsfml.graphics.Color;
+import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.window.Keyboard;
 import org.jsfml.window.Keyboard.Key;
@@ -19,6 +20,7 @@ public class Game {
 	private Color backColor;
 	private Actor actor;
 	private Camera camera;
+	private Map map;
 	
 	/***
 	 * @param fwinWidth
@@ -38,8 +40,11 @@ public class Game {
 		VideoMode mode = new VideoMode(winWidth, winHeight);
 		window = new RenderWindow(mode, title);
 		
+		//initialize the map
+		map = new Map(32, 32, "map.txt");
+		
 		//initialize the Actor
-		actor = new Actor(50, 50, "sprite1.png");
+		actor = new Actor(0, 0, "sprite1.png");
 		
 		setViewToActor();
 	}
@@ -79,6 +84,10 @@ public class Game {
 				
 				//set the view 
 				window.setView(camera.getView());
+				
+				//draw the map
+				displayMap();
+				
 				//draw the Actors
 				window.draw(actor.getActor());
 				
@@ -95,23 +104,31 @@ public class Game {
 			if(Keyboard.isKeyPressed(Key.W))
 			{
 				actor.updateY((float) -1);
-				//camera.update(0, -1);
+				camera.update(0, -1);
+				System.out.println(camera.getX() + " " + camera.getY());
 			}
 			if (Keyboard.isKeyPressed(Key.S))
 			{
 				actor.updateY((float) 1);
-				//camera.update(0,  1);
+				camera.update(0,  1);
+				System.out.println(camera.getX() + " " + camera.getY());
 			}
 			if (Keyboard.isKeyPressed(Key.A))
 			{
 				actor.updateX((float) -1);
-				//camera.update(-1, 0);
+				camera.update(-1, 0);
+				System.out.println(camera.getX() + " " + camera.getY());
 			}
 			if (Keyboard.isKeyPressed(Key.D))
 			{
 				actor.updateX((float) 1);
-				//camera.update(1,  0);
-				camera.zoom((float) 1.001);
+				camera.update(1,  0);
+				System.out.println(camera.getX() + " " + camera.getY());
+				//camera.zoom((float) 1.001);
+			}
+			if (Keyboard.isKeyPressed(Key.X))
+			{
+				camera.zoom((float) 2);
 			}
 		}
 	}
@@ -119,7 +136,7 @@ public class Game {
 	/**
 	 * Method sets the play view using the camera class
 	 */
-	private void setViewToActor()
+	public void setViewToActor()
 	{
 		//set the view to the player's Actor
 		//start by finding the center of the Actor
@@ -131,6 +148,14 @@ public class Game {
 		float yPos = actor.getY() + yCenter;
 		
 		camera = new Camera(xPos, yPos, (float) winWidth, (float) winHeight);
+	}
+	
+	/**
+	 * Function displays the map
+	 */
+	public void  displayMap()
+	{
+		map.draw(window);
 	}
 	
 	public static void main(String args[]) throws IOException
