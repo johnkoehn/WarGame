@@ -17,5 +17,5 @@ public class World {
 	 */
 	
 	private int damageGiven(Unit attacker, Unit defender)
-	{int damageFinal = 
+	{return 0;}
 }
