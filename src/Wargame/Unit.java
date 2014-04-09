@@ -4,6 +4,7 @@ import java.io.IOException;
 
 public class Unit extends Actor {
 
+	private int name;
 	private int unitID;
 	private int type;
 	private int subtype;
@@ -34,7 +35,7 @@ public class Unit extends Actor {
 	// // TODO Auto-generated constructor stub
 	// }
 
-	public Unit(int givenUnitID, int givenType, int givenSubType,
+	public Unit(String givenName, int givenUnitID, int givenType, int givenSubType,
 			int givenHealth, int givenMovePoints, int givenFuel, int givenAmmo,
 			int givenAttack, int givenRange, int givenWeaknessID,
 			double givenWeaknessMult, float fxPos, float fyPos,

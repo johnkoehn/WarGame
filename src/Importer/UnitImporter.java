@@ -38,10 +38,21 @@ public class UnitImporter {
 		Scanner v = new Scanner(s);
 		v.useDelimiter(",");
 
-		Unit temp = new Unit(v.nextInt(), v.nextInt(), v.nextInt(),
-				v.nextInt(), v.nextInt(), v.nextInt(), v.nextInt(),
-				v.nextInt(), v.nextInt(), v.nextInt(), v.nextDouble(),
-				v.nextFloat(), v.nextFloat(), v.next());
+		Unit temp = new Unit(v.next(), // given Name
+				v.nextInt(), // given UnitID
+				v.nextInt(), // given Type
+				v.nextInt(), // given SubType
+				v.nextInt(), // given Health
+				v.nextInt(), // given MovePoints
+				v.nextInt(), // given Fuel
+				v.nextInt(), // given Ammo
+				v.nextInt(), // given Attack
+				v.nextInt(), // given Range
+				v.nextInt(), // given WeaknessID
+				v.nextDouble(), // given WeaknessMult
+				v.nextFloat(), // given fxPos
+				v.nextFloat(), // given fyPos
+				v.next()); // given TextureFile
 		unitList.add(temp);
 		v.close();
 	}
