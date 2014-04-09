@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class Unit {
 
-	private int name;
+	private String name;
 	private int unitID;
 	private int type;
 	private int subtype;
@@ -14,7 +14,7 @@ public class Unit {
 	private String sprite;
 
 	private int totalHealth;
-	
+
 	private int totalMovePoints;
 
 	private int totalFuel;
@@ -24,11 +24,12 @@ public class Unit {
 	private int weaknessID;
 	private double weaknessMult;
 
-	public Unit(String givenName, int givenUnitID, int givenType, int givenSubType,
-			int givenHealth, int givenMovePoints, int givenFuel, int givenAmmo,
-			int givenAttack, int givenRange, int givenWeaknessID,
-			double givenWeaknessMult) throws IOException {
+	public Unit(String givenName, int givenUnitID, int givenType,
+			int givenSubType, int givenHealth, int givenMovePoints,
+			int givenFuel, int givenAmmo, int givenAttack, int givenRange,
+			int givenWeaknessID, double givenWeaknessMult) throws IOException {
 
+		name = givenName;
 		unitID = givenUnitID;
 		type = givenType;
 		subtype = givenSubType;
@@ -47,6 +48,10 @@ public class Unit {
 		weaknessID = givenWeaknessID;
 		weaknessMult = givenWeaknessMult;
 
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public int getTotalHealth() {
