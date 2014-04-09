@@ -10,7 +10,7 @@ public class Camera {
 	private float viewWidth;
 	private float viewHeight;
 	
-	Camera(float x, float y, float width, float height)
+	public Camera(float x, float y, float width, float height)
 	{
 		xPos = x;
 		yPos = y;

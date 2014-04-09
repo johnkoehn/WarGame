@@ -17,7 +17,7 @@ public class TextureManager {
 	 */
 	private ArrayList<WTexture> textures;
 	
-	TextureManager()
+	public TextureManager()
 	{
 		textures = new ArrayList<WTexture>();
 	}
@@ -52,6 +52,7 @@ public class TextureManager {
 		System.out.println("Texture with ID " + texID + " not found.");
 		return null;
 	}
+	
 
 }
 

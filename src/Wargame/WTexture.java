@@ -18,7 +18,7 @@ public class WTexture {
 	private int height;
 	private int ID;
 	
-	WTexture(String textureFile, int ID)
+	public WTexture(String textureFile, int ID)
 	{
 		this.ID = ID;
 		
