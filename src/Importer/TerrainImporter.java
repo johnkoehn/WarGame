@@ -1,5 +1,6 @@
 package Importer;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,31 +9,27 @@ import Wargame.Terrain;
 public class TerrainImporter {
 
 	private ArrayList<Terrain> terList = new ArrayList<Terrain>();
+	private final String DEFUALT_ADDRESS = "./TerrainStatV1.csv";
 
-	public TerrainImporter(String address) {
-
-//		String address = "/Users/Owner/Documents/Libraries/School/Spring 13/CPRE 186/UnitStatV1.csv";
+	public TerrainImporter(String address) throws FileNotFoundException {
 
 		CSVImporter reader = new CSVImporter(address);
 		ArrayList<String> list = reader.getCSVList();
-		int size = list.size() - 5;
 
-		for (int i = 0; i < size; i++) {
+		// skips header of import
+		for (int i = 1; i < list.size(); i++) {
 			parsHelper(list.get(i));
-			System.out.println(terList.get(i));
+			// System.out.println(terList.get(i));
 		}
 	}
-	
-	public TerrainImporter() {
 
-//		String address = "/Users/Owner/Documents/Libraries/School/Spring 13/CPRE 186/UnitStatV1.csv";
-		String address = "./UnitStatV1.csv";
+	public TerrainImporter() throws FileNotFoundException {
 
-		CSVImporter reader = new CSVImporter(address);
+		CSVImporter reader = new CSVImporter(DEFUALT_ADDRESS);
 		ArrayList<String> list = reader.getCSVList();
-		int size = list.size() - 5;
 
-		for (int i = 0; i < size; i++) {
+		// skips header of import
+		for (int i = 1; i < list.size(); i++) {
 			parsHelper(list.get(i));
 			System.out.println(terList.get(i));
 		}
@@ -42,10 +39,9 @@ public class TerrainImporter {
 		Scanner v = new Scanner(s);
 		v.useDelimiter(",");
 
-		Terrain temp = new Terrain(v.nextInt(), v.nextInt(), v.nextInt(), v.nextInt(), v.nextInt());
-		terList.add(temp);
+		terList.add(new Terrain(v.nextInt(), v.nextInt(), v.nextInt(), v
+				.nextInt(), v.nextInt()));
 		v.close();
-		// return temp;
 	}
 
 	public ArrayList<Terrain> getList() {
