@@ -15,29 +15,21 @@ public class TextureManager {
 	/**
 	 * Arraylist containing all the textures
 	 */
-	private ArrayList<Texture> textures;
+	private ArrayList<WTexture> textures;
 	
 	TextureManager()
 	{
-		textures = new ArrayList<Texture>();
+		textures = new ArrayList<WTexture>();
 	}
 	
 	/**
 	 * Method to add a new texture to the array list
 	 * @param textureName
 	 */
-	public void addTexture(String textureName)
+	public void addTexture(String textureName, int ID)
 	{
-		Texture tempTexture = new Texture();
-		try 
-		{
-			tempTexture.loadFromFile(Paths.get(textureName));
-		} catch (IOException e) {
-			System.out.println("INVALIE TEXTURE NAME! " + textureName);
-			tempTexture = null;
-		}
-		
-		textures.add(tempTexture);
+		WTexture temp = new WTexture(textureName, ID);
+		textures.add(temp);
 	}
 	
 	/**
@@ -50,8 +42,14 @@ public class TextureManager {
 		//find zie texture!
 		for (int i = 0; i < textures.size(); i++)
 		{
-			
+			if (texID == (textures.get(i)).getID())
+			{
+				return (textures.get(i)).getTexture();
+			}
 		}
+		
+		//texture not found :/
+		System.out.println("Texture with ID " + texID + " not found.");
 		return null;
 	}
 
