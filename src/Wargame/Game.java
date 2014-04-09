@@ -21,6 +21,7 @@ public class Game {
 	private Actor actor;
 	private Camera camera;
 	private Map map;
+	private TextureManager tManager;
 	
 	/***
 	 * @param fwinWidth
