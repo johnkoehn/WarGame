@@ -49,10 +49,7 @@ public class UnitImporter {
 				v.nextInt(), // given Attack
 				v.nextInt(), // given Range
 				v.nextInt(), // given WeaknessID
-				v.nextDouble(), // given WeaknessMult
-				v.nextFloat(), // given fxPos
-				v.nextFloat(), // given fyPos
-				v.next()); // given TextureFile
+				v.nextDouble()); // given WeaknessMult
 		unitList.add(temp);
 		v.close();
 	}
