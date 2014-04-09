@@ -8,7 +8,7 @@ public class tester {
 //		UnitImporter test1 = new UnitImporter();
 //		test1.getList();
 		
-		TerrainImporter test2 = new TerrainImporter();
+//		TerrainImporter test2 = new TerrainImporter();
 
 	}
 
