@@ -31,7 +31,7 @@ public class Map {
 	//stuff for later
 	private String mapFile;
 	
-	Map(int ftileWidth, int ftileHeight, String fmapFile) throws FileNotFoundException
+	public Map(int ftileWidth, int ftileHeight, String fmapFile) throws FileNotFoundException
 	{
 		tileWidth = ftileWidth;
 		tileHeight = ftileHeight;
@@ -49,7 +49,7 @@ public class Map {
 	 * Creates all the rectangles for the map
 	 * @throws FileNotFoundException 
 	 */
-	void createMap() throws FileNotFoundException
+	public void createMap() throws FileNotFoundException
 	{
 		//prep for creating the map
 		ArrayList<Integer> mapArray = readFile();

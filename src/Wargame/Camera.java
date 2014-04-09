@@ -10,14 +10,13 @@ public class Camera {
 	private float viewWidth;
 	private float viewHeight;
 	
-	Camera(float x, float y, float width, float height)
+	public Camera(float x, float y, float width, float height)
 	{
 		xPos = x;
 		yPos = y;
 		viewWidth = width;
 		viewHeight = height;
 		
-		System.out.println(viewHeight);
 		//now set the view
 		view = new View();
 		view.setCenter(xPos, yPos);
