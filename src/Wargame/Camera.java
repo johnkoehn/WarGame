@@ -17,7 +17,6 @@ public class Camera {
 		viewWidth = width;
 		viewHeight = height;
 		
-		System.out.println(viewHeight);
 		//now set the view
 		view = new View();
 		view.setCenter(xPos, yPos);
