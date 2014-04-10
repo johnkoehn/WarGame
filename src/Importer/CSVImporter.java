@@ -13,7 +13,9 @@ public class CSVImporter {
 		
 		Scanner scanner = new Scanner(new File(address));
 		while (scanner.hasNext()) {
-			list.add(scanner.next());
+			String s = scanner.next();
+			System.out.println(s);
+			list.add(s);
 		}
 		
 		scanner.close();
