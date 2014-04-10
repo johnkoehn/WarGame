@@ -23,14 +23,15 @@ public class UnitImporter {
 		}
 	}
 
+	// skips header of import
 	public UnitImporter() throws IOException {
 
 		CSVImporter reader = new CSVImporter(DEFUALT_ADDRESS);
 		ArrayList<String> list = reader.getCSVList();
 
-		for (int i = 0; i < list.size(); i++) {
+		for (int i = 1; i < list.size(); i++) {
 			parsHelper(list.get(i));
-			// System.out.println(unitList.get(i));
+//			 System.out.println(unitList.get(i));
 		}
 	}
 
