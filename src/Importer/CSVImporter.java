@@ -12,6 +12,7 @@ public class CSVImporter {
 	public CSVImporter(String address) throws FileNotFoundException {
 		
 		Scanner scanner = new Scanner(new File(address));
+		String s;
 		while (scanner.hasNext()) {
 			list.add(scanner.next());
 		}
