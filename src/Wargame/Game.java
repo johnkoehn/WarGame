@@ -1,8 +1,11 @@
 package Wargame;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import org.jsfml.graphics.Color;
+import org.jsfml.graphics.Font;
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.Text;
 import org.jsfml.window.Keyboard;
 import org.jsfml.window.Keyboard.Key;
 import org.jsfml.window.Mouse;
@@ -11,9 +14,14 @@ import org.jsfml.window.event.Event;
 import org.jsfml.window.event.Event.Type;
 
 public class Game {
+	private String variable;
 	private int winWidth;
 	private int winHeight;
+	private Font arial = new Font();
 	private RenderWindow window;
+	private RenderWindow subWindow1;
+	private Text text1;
+	private Text text2;
 	private Event event;
 	private Color backColor;
 	private Actor actor;
@@ -34,16 +42,26 @@ public class Game {
 		winHeight = fwinHeight;
 		
 		backColor = new Color(0, 0, 255); //blue
-
-		//initialize the window
+		//initialize the windows
 		VideoMode mode = new VideoMode(winWidth, winHeight);
+		VideoMode mode2 = new VideoMode(600, 200);
 		window = new RenderWindow(mode, title);
-		
+		subWindow1 = new RenderWindow(mode2, "Info");
 		//initialize the map
 		map = new Map(32, 32, "map.txt");
 		
 		//initialize the Actor
 		actor = new Actor(0, 0, "sprite1.png");
+		
+		//initialize text
+		arial = new Font();
+		try {
+			arial.loadFromFile(Paths.get("arial.ttf"));
+		} catch(IOException ex) {
+			ex.printStackTrace();
+		}
+		text1 = new Text("You",arial,15);
+		text2 = new Text("Are",arial,15);
 		
 		setViewToActor();
 	}
@@ -73,6 +91,7 @@ public class Game {
 				if (event.type == Type.CLOSED)
 				{
 					window.close();
+					subWindow1.close();
 				}
 				
 				//check for input
@@ -89,10 +108,23 @@ public class Game {
 				
 				//draw the Actors
 				window.draw(actor.getActor());
-				
+				text1.setPosition(100,100);
+				text2.setPosition(300,100);
+				subWindow1.draw(text1);
+				subWindow1.draw(text2);
+				text1.setColor(new Color(255,255,255));
+				text2.setColor(new Color(255,255,255));
 				window.display();
+				subWindow1.display();
+				text1.setString("an");
+				text2.setString("idiot");
+				subWindow1.clear();
+				subWindow1.draw(text1);
+				subWindow1.draw(text2);
+				
 				
 				checkMousePosition();
+			
 			}
 		}
 	}
@@ -162,10 +194,13 @@ public class Game {
 	/**
 	 * Function displays the map
 	 */
+	
+	
 	public void  displayMap()
 	{
 		map.draw(window);
 	}
+	
 	
 	public static void main(String args[]) throws IOException
 	{

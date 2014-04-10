@@ -34,12 +34,11 @@ public class Map {
 	
 	//array contains all the values that make up the map
 	ArrayList<Integer> mapArray;
-<<<<<<< HEAD
-=======
+
 	
 	//Terrain Library
 	ArrayList<Terrain> terLib;
->>>>>>> 93639a622144a60b6dd772249081c093823a3f46
+
 	
 	public Map(int ftileWidth, int ftileHeight, String fmapFile) throws FileNotFoundException
 	{
@@ -119,16 +118,13 @@ public class Map {
 		
 		File file = new File(mapFile);
 		Scanner scanner = new Scanner(file);
-		
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 		ArrayList<Integer> mapArray = new ArrayList<Integer>();
-=======
+
 		mapArray = new ArrayList<Integer>();
->>>>>>> 64ccbe748b83d8c9b2c8035e8cbdb409a19aa368
-=======
+
 		mapArray = new ArrayList<Integer>();
->>>>>>> 93639a622144a60b6dd772249081c093823a3f46
+
 		while(scanner.hasNextInt())
 		{
 			int newTile = scanner.nextInt();
