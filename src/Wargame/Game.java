@@ -1,16 +1,14 @@
 package Wargame;
 import java.io.IOException;
 
-import org.jsfml.*;
 import org.jsfml.graphics.Color;
-import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.window.Keyboard;
 import org.jsfml.window.Keyboard.Key;
+import org.jsfml.window.Mouse;
 import org.jsfml.window.VideoMode;
 import org.jsfml.window.event.Event;
 import org.jsfml.window.event.Event.Type;
-import org.jsfml.window.event.KeyEvent;
 
 public class Game {
 	private int winWidth;
@@ -21,6 +19,7 @@ public class Game {
 	private Actor actor;
 	private Camera camera;
 	private Map map;
+	private TextureManager tManager;
 	
 	/***
 	 * @param fwinWidth
@@ -92,9 +91,19 @@ public class Game {
 				window.draw(actor.getActor());
 				
 				window.display();
+				
+				checkMousePosition();
 			}
 		}
 	}
+	
+	private void checkMousePosition()
+	{if (Mouse.isButtonPressed(Mouse.Button.LEFT))
+			{Point a = MouseMonitor.getMousePosition();
+			System.out.println(a.getX() + " " + a.getY());
+			}
+	}
+	
 	
 	private void checkInput()
 	{
@@ -105,25 +114,25 @@ public class Game {
 			{
 				actor.updateY((float) -1);
 				camera.update(0, -1);
-				System.out.println(camera.getX() + " " + camera.getY());
+				//System.out.println(camera.getX() + " " + camera.getY());
 			}
 			if (Keyboard.isKeyPressed(Key.S))
 			{
 				actor.updateY((float) 1);
 				camera.update(0,  1);
-				System.out.println(camera.getX() + " " + camera.getY());
+				//System.out.println(camera.getX() + " " + camera.getY());
 			}
 			if (Keyboard.isKeyPressed(Key.A))
 			{
 				actor.updateX((float) -1);
 				camera.update(-1, 0);
-				System.out.println(camera.getX() + " " + camera.getY());
+				//System.out.println(camera.getX() + " " + camera.getY());
 			}
 			if (Keyboard.isKeyPressed(Key.D))
 			{
 				actor.updateX((float) 1);
 				camera.update(1,  0);
-				System.out.println(camera.getX() + " " + camera.getY());
+				//System.out.println(camera.getX() + " " + camera.getY());
 				//camera.zoom((float) 1.001);
 			}
 			if (Keyboard.isKeyPressed(Key.X))
