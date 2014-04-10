@@ -115,25 +115,25 @@ public class Game {
 			if(Keyboard.isKeyPressed(Key.W))
 			{
 				//actor.updateY((float) -1);
-				camera.update(0, -1);
+				camera.update(0, -5);
 				//System.out.println(camera.getX() + " " + camera.getY());
 			}
 			if (Keyboard.isKeyPressed(Key.S))
 			{
 				//actor.updateY((float) 1);
-				camera.update(0,  1);
+				camera.update(0,  5);
 				//System.out.println(camera.getX() + " " + camera.getY());
 			}
 			if (Keyboard.isKeyPressed(Key.A))
 			{
 				//actor.updateX((float) -1);
-				camera.update(-1, 0);
+				camera.update(-5, 0);
 				//System.out.println(camera.getX() + " " + camera.getY());
 			}
 			if (Keyboard.isKeyPressed(Key.D))
 			{
 				//actor.updateX((float) 1);
-				camera.update(1,  0);
+				camera.update(5,  0);
 				//System.out.println(camera.getX() + " " + camera.getY());
 			}
 			if (Keyboard.isKeyPressed(Key.X))
