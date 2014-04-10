@@ -184,7 +184,6 @@ public class Map {
 	{
 		return mapArray;
 	}
-<<<<<<< HEAD
 	
 	public int getTileWidth()
 	{
@@ -195,9 +194,6 @@ public class Map {
 	{
 		return tileHeight;
 	}
-
-=======
->>>>>>> 387799ea622dd4986da995c788292897f3f25cf5
 	
 	public int getTileWidth()
 	{
