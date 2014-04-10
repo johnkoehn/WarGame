@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
 
+import Importer.TerrainImporter;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -31,7 +33,10 @@ public class Map {
 	private Color color2;
 	
 	//array contains all the values that make up the map
-	ArrayList<Integer> mapArray;
+	private ArrayList<Integer> mapArray;
+	
+	// creates a library for the terrain
+	private ArrayList<Terrain> terLib;
 	
 	public Map(int ftileWidth, int ftileHeight, String fmapFile) throws FileNotFoundException
 	{
@@ -45,6 +50,9 @@ public class Map {
 		color1 = new Color(45, 255, 4); //grass
 		color2 = new Color(56, 147, 192); //water
 		createMap();
+		
+		TerrainImporter tImp = new TerrainImporter();
+		terLib = tImp.getList();
 	}
 	
 	/**

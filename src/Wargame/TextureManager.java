@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import org.jsfml.graphics.Texture;
 import org.jsfml.system.Vector2i;
 
+import Importer.TextureImporter;
+
 /**
  * This is class contains all the textures to prevent reloading multiple textures
  * @author Axel
@@ -17,9 +19,10 @@ public class TextureManager {
 	 */
 	private ArrayList<WTexture> textures;
 	
-	public TextureManager()
+	public TextureManager() throws IOException
 	{
-		textures = new ArrayList<WTexture>();
+		TextureImporter texImp = new TextureImporter();
+		textures = texImp.getList();
 	}
 	
 	/**
