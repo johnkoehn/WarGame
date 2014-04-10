@@ -9,7 +9,7 @@ import Wargame.Unit;
 public class UnitImporter {
 
 	private ArrayList<Unit> unitList = new ArrayList<Unit>();
-	private final String DEFUALT_ADDRESS = "./UnitStatV1.csv";
+	public final String DEFUALT_ADDRESS = "./UnitStatV1.csv";
 
 	public UnitImporter(String address) throws IOException {
 
