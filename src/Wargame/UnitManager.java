@@ -1,5 +1,6 @@
 package Wargame;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class UnitManager {
@@ -18,8 +19,9 @@ public class UnitManager {
 	 * @param xpos X position to add unit to
 	 * @param ypos Y position to add unit to
 	 * @param texture The texture for the unit
+	 * @throws IOException 
 	 */
-	public void addUnit(int player, Unit unit, float xpos, float ypos, String texture)
+	public void addUnit(int player, Unit unit, float xpos, float ypos, String texture) throws IOException
 	{ActiveUnit a = new ActiveUnit(unit,xpos,ypos,texture);
 		player1.add(a);}
 	/**
