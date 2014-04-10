@@ -3,6 +3,8 @@ package Wargame;
 import java.io.IOException;
 import java.util.Random;
 
+import org.jsfml.graphics.RenderWindow;
+
 /**
  * Class generates a bunch of random units on the map
  * this pretty much a demo class
@@ -45,9 +47,11 @@ public class RandomUnitGenerator
 		width = map.mapWidthTiles();
 		height = map.mapHeightTiles();
 		tileDeminsions = new Point(map.getTileWidth(), map.getTileHeight());
+		
+		createUnits();
 	}
 	
-	private void createUnits()
+	private void createUnits() throws IOException
 	{
 		for(int i = 0; i < 50; i++)
 		{
@@ -65,8 +69,16 @@ public class RandomUnitGenerator
 			xPos = (int) ((xPos * tileDeminsions.getX()) + (tileDeminsions.getX() / 2));
 			yPos = (int) ((yPos * tileDeminsions.getY()) + (tileDeminsions.getY() / 2));
 			
+			//add this to the unit manager now
+			uManager.addUnit(1, tempUnit, xPos, yPos, "./unit_1.png");
+			
 		}
 		
+	}
+	
+	public void draw(RenderWindow window)
+	{
+		uManager.draw(window);
 	}
 }
 

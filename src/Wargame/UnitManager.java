@@ -3,6 +3,8 @@ package Wargame;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.jsfml.graphics.RenderWindow;
+
 public class UnitManager {
 	// Function:
 	// Tracks units for each player
@@ -45,6 +47,12 @@ public class UnitManager {
 	 * deducts units' health.
 	 */
 	public void removeDead() {
+	}
+	
+	public void draw(RenderWindow window)
+	{
+		//draw all the active units
+		
 	}
 
 }
