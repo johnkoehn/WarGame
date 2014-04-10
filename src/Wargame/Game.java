@@ -20,6 +20,7 @@ public class Game {
 	private Camera camera;
 	private Map map;
 	private TextureManager tManager;
+	private RandomUnitGenerator generator;
 	
 	/***
 	 * @param fwinWidth
@@ -46,6 +47,7 @@ public class Game {
 		actor = new Actor(0, 0, "sprite1.png");
 		
 		setViewToActor();
+		generator = new RandomUnitGenerator(map);
 	}
 	
 	int getWidth()
@@ -88,7 +90,7 @@ public class Game {
 				displayMap();
 				
 				//draw the Actors
-				window.draw(actor.getActor());
+				generator.draw(window);
 				
 				window.display();
 				
@@ -112,28 +114,27 @@ public class Game {
 			
 			if(Keyboard.isKeyPressed(Key.W))
 			{
-				actor.updateY((float) -1);
+				//actor.updateY((float) -1);
 				camera.update(0, -1);
 				//System.out.println(camera.getX() + " " + camera.getY());
 			}
 			if (Keyboard.isKeyPressed(Key.S))
 			{
-				actor.updateY((float) 1);
+				//actor.updateY((float) 1);
 				camera.update(0,  1);
 				//System.out.println(camera.getX() + " " + camera.getY());
 			}
 			if (Keyboard.isKeyPressed(Key.A))
 			{
-				actor.updateX((float) -1);
+				//actor.updateX((float) -1);
 				camera.update(-1, 0);
 				//System.out.println(camera.getX() + " " + camera.getY());
 			}
 			if (Keyboard.isKeyPressed(Key.D))
 			{
-				actor.updateX((float) 1);
+				//actor.updateX((float) 1);
 				camera.update(1,  0);
 				//System.out.println(camera.getX() + " " + camera.getY());
-				//camera.zoom((float) 1.001);
 			}
 			if (Keyboard.isKeyPressed(Key.X))
 			{

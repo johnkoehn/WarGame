@@ -52,7 +52,10 @@ public class UnitManager {
 	public void draw(RenderWindow window)
 	{
 		//draw all the active units
-		
+		for(int i = 0; i < player1.size(); i++)
+		{
+			window.draw(player1.get(i).getActor());
+		}
 	}
 
 }
