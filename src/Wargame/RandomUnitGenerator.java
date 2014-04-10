@@ -43,6 +43,7 @@ public class RandomUnitGenerator
 	public RandomUnitGenerator(Map map) throws IOException
 	{
 		uLibrary = new UnitLibrary();
+		uManager = new UnitManager();
 		random = new Random();
 		width = map.mapWidthTiles();
 		height = map.mapHeightTiles();
@@ -56,10 +57,19 @@ public class RandomUnitGenerator
 		for(int i = 0; i < 50; i++)
 		{
 			//get ID of random unit to create
-			int ID = random.nextInt(1) + 1;
+			int ID = 1;
 			
 			//create a new unit 
 			Unit tempUnit = uLibrary.getUnit(ID);
+			
+			if (tempUnit == null)
+			{
+				System.out.println(i + " O crap! " + ID);
+			}
+			else
+			{
+				System.out.println("GOOD");
+			}
 			
 			//now, get a random location for this cute little unit
 			int xPos = random.nextInt(width);
