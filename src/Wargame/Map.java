@@ -195,14 +195,4 @@ public class Map {
 		return tileHeight;
 	}
 	
-	public int getTileWidth()
-	{
-		return tileWidth;
-	}
-	
-	public int getTileHeight()
-	{
-		return tileHeight;
-	}
-	
 }
