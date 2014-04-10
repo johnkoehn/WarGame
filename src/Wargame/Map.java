@@ -15,9 +15,11 @@ import java.util.Scanner;;
 
 public class Map {
 	//TIME TO MAKE MANY RECTANGLES FOR MAP
-	private ArrayList<RectangleShape> tile = new ArrayList<RectangleShape>();
+	private ArrayList<RectangleShape> tiles = new ArrayList<RectangleShape>();
 	private int tileWidth;
 	private int tileHeight;
+	private String mapFile;
+	
 	
 	//map width and height are measured in the number of tiles that make up the width and height
 	private int mapWidth; 
@@ -28,8 +30,8 @@ public class Map {
 	private Color color1;
 	private Color color2;
 	
-	//stuff for later
-	private String mapFile;
+	//array contains all the values that make up the map
+	ArrayList<Integer> mapArray;
 	
 	public Map(int ftileWidth, int ftileHeight, String fmapFile) throws FileNotFoundException
 	{
@@ -92,7 +94,7 @@ public class Map {
 
 				
 				//add it to the arraylist
-				tile.add(temp);
+				tiles.add(temp);
 				
 			}
 		}
@@ -106,7 +108,11 @@ public class Map {
 		File file = new File(mapFile);
 		Scanner scanner = new Scanner(file);
 		
-		ArrayList<Integer> mapArray = new ArrayList<>();
+<<<<<<< HEAD
+		ArrayList<Integer> mapArray = new ArrayList<Integer>();
+=======
+		mapArray = new ArrayList<Integer>();
+>>>>>>> 64ccbe748b83d8c9b2c8035e8cbdb409a19aa368
 		while(scanner.hasNextInt())
 		{
 			int newTile = scanner.nextInt();
@@ -138,7 +144,7 @@ public class Map {
 	
 	public RectangleShape getRectangle(int index)
 	{
-		return tile.get(index);
+		return tiles.get(index);
 	}
 	
 	/**
@@ -147,15 +153,40 @@ public class Map {
 	 */
 	public int getSize()
 	{
-		return tile.size();
+		return tiles.size();
 	}
 	
 	public void draw(RenderWindow window)
 	{
-		for (int i = 0; i < tile.size(); i++)
+		for (int i = 0; i < tiles.size(); i++)
 		{
-			window.draw(tile.get(i));
+			window.draw(tiles.get(i));
 		}
+	}
+	
+	public int mapWidthTiles()
+	{
+		return mapWidth;
+	}
+	
+	public int mapHeightTiles()
+	{
+		return mapHeight;
+	}
+	
+	public int mapWidthPixels()
+	{
+		return (mapWidth * tileWidth);
+	}
+	
+	public int mapHeightPixels()
+	{
+		return (mapHeight * tileHeight);
+	}
+	
+	public ArrayList<Integer> getList()
+	{
+		return mapArray;
 	}
 
 	
