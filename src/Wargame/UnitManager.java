@@ -15,7 +15,6 @@ public class UnitManager {
 
 	/**
 	 * Create a new active unit and add it to the player's army.
-<<<<<<< HEAD
 	 * @param player player to add unit to
 	 * @param unit unit to create an active unit out of
 	 * @param xpos X position to add unit to
@@ -46,7 +45,6 @@ public class UnitManager {
 		player1.add(a);
 	}
 
->>>>>>> 387799ea622dd4986da995c788292897f3f25cf5
 	/**
 	 * Remove unit from player's army.
 	 * 
