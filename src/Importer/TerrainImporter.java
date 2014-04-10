@@ -9,7 +9,7 @@ import Wargame.Terrain;
 public class TerrainImporter {
 
 	private ArrayList<Terrain> terList = new ArrayList<Terrain>();
-	private final String DEFUALT_ADDRESS = "./TerrainStatV1.csv";
+	public final String DEFUALT_ADDRESS = "./TerrainStatV1.csv";
 
 	public TerrainImporter(String address) throws FileNotFoundException {
 
@@ -39,8 +39,12 @@ public class TerrainImporter {
 		Scanner v = new Scanner(s);
 		v.useDelimiter(",");
 
-		terList.add(new Terrain(v.nextInt(), v.nextInt(), v.nextInt(), v
-				.nextInt(), v.nextInt()));
+		terList.add(new Terrain(
+				v.nextInt(), // id
+				v.nextInt(), // subID
+				v.nextInt(), // color
+				v.nextInt(), // defense
+				v.nextInt()));// moveCost
 		v.close();
 	}
 
