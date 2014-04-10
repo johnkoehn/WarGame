@@ -5,8 +5,6 @@ import java.io.FileNotFoundException;
 import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
 
-import Importer.TerrainImporter;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -34,12 +32,6 @@ public class Map {
 	
 	//array contains all the values that make up the map
 	ArrayList<Integer> mapArray;
-<<<<<<< HEAD
-=======
-	
-	//Terrain Library
-	ArrayList<Terrain> terLib;
->>>>>>> 93639a622144a60b6dd772249081c093823a3f46
 	
 	public Map(int ftileWidth, int ftileHeight, String fmapFile) throws FileNotFoundException
 	{
@@ -53,10 +45,6 @@ public class Map {
 		color1 = new Color(45, 255, 4); //grass
 		color2 = new Color(56, 147, 192); //water
 		createMap();
-		
-		//imports the terrain list
-		TerrainImporter tImp = new TerrainImporter();
-		terLib = tImp.getList();
 	}
 	
 	/**
@@ -120,15 +108,7 @@ public class Map {
 		File file = new File(mapFile);
 		Scanner scanner = new Scanner(file);
 		
-<<<<<<< HEAD
-<<<<<<< HEAD
-		ArrayList<Integer> mapArray = new ArrayList<Integer>();
-=======
 		mapArray = new ArrayList<Integer>();
->>>>>>> 64ccbe748b83d8c9b2c8035e8cbdb409a19aa368
-=======
-		mapArray = new ArrayList<Integer>();
->>>>>>> 93639a622144a60b6dd772249081c093823a3f46
 		while(scanner.hasNextInt())
 		{
 			int newTile = scanner.nextInt();
@@ -204,7 +184,15 @@ public class Map {
 	{
 		return mapArray;
 	}
-
 	
+	public int getTileWidth()
+	{
+		return tileWidth;
+	}
+	
+	public int getTileHeight()
+	{
+		return tileHeight;
+	}
 	
 }
