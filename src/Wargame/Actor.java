@@ -72,4 +72,15 @@ public class Actor {
 		Vector2i size = texture.getSize();
 		return size.y;
 	}
+	
+	public void setX(float newX)
+	{
+		p.setX(newX);
+		actor.setOrigin(null);
+	}
+	
+	public void setY(float newY)
+	{
+		p.setY(newY);
+	}
 }
