@@ -68,7 +68,7 @@ public class UnitManager {
 	
 	public ActiveUnit getUnit(int index)
 	{
-		if (index > player.size())
+		if (index >= player.size())
 		{
 			System.out.println("Out of bounds for getUnit index, returning first unit");
 			return player.get(0);
