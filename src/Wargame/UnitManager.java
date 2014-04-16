@@ -33,23 +33,11 @@ public class UnitManager {
 	 */
 	public void addUnit(int playerPosition, Unit unit, float xpos, float ypos,
 			String texture) throws IOException {
-		
+
 		ActiveUnit temp = new ActiveUnit(unit, xpos, ypos, texture);
-//		player.get(0);
+		// player.get(0);
 		player.add(temp);
 	}
-
-	/**
-	 * Remove unit from player's army.
-	 * 
-	 * @param player
-	 *            player to remove unit from
-	 * @param a
-	 *            unit to be removed
-	 */
-//	public void deleteUnit(int player, ActiveUnit a) {
-//		player.remove(a);
-//	}
 
 	/**
 	 * Todo: Add a function that checks every player's team for units with 0 HP
@@ -65,20 +53,18 @@ public class UnitManager {
 			window.draw(player.get(i).getActor());
 		}
 	}
-	
-	public ActiveUnit getUnit(int index)
-	{
-		if (index > player.size())
-		{
-			System.out.println("Out of bounds for getUnit index, returning first unit");
+
+	public ActiveUnit getUnit(int index) {
+		if (index > player.size()) {
+			System.out
+					.println("Out of bounds for getUnit index, returning first unit");
 			return player.get(0);
 		}
-		
+
 		return player.get(index);
 	}
-	
-	public int getLength()
-	{
+
+	public int getLength() {
 		return player.size();
 	}
 
