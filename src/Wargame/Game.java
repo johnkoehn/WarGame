@@ -46,7 +46,8 @@ public class Game {
 		// initialize the map
 		map = new Map(32, 32, "map.txt");
 
-		setViewToActor();
+		camera = new Camera(0, 0, winWidth, winHeight);
+		selectID = 0;
 		generator = new RandomUnitGenerator(map);
 		uManager = generator.getUnits();
 		// reticule = new Reticule(MouseMonitor.getMousePosition(window));
@@ -174,21 +175,25 @@ public class Game {
 	}
 
 	/**
-	 * Method sets the play view using the camera class
+	 * Method centers the camera view on a unit based on the selectID
 	 */
-	public void setViewToActor() {
+	public void setViewToActor()
+	{
+		//check if the selectID is over bounds
+		if (selectID >= uManager.getLength())
+		{
+			selectID = 0;
+		}
 
-		/*
-		 * //set the view to the player's Actor //start by finding the center of
-		 * the Actor float xCenter = actor.getWidth() / 2; float yCenter =
-		 * actor.getHeight() / 2;
-		 * 
-		 * //now find the (x,y) position of the center of the sprite float xPos
-		 * = actor.getX() + xCenter; float yPos = actor.getY() + yCenter;
-		 * 
-		 * camera = new Camera(xPos, yPos, (float) winWidth, (float) winHeight);
-		 */
-		camera = new Camera(0, 0, winWidth, winHeight);
+		//now get the active unit and center the camera on it
+		ActiveUnit temp = uManager.getUnit(selectID);
+		float xCenter = temp.getWidth() / 2;
+		float yCenter = temp.getHeight() / 2;
+
+		float xPos = temp.getX() + xCenter;
+		float yPos = temp.getY() + yCenter;
+
+		camera = new Camera(xPos, yPos, winWidth, winHeight);
 	}
 
 	/**
