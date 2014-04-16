@@ -107,8 +107,18 @@ public class Game {
 			}
 	}
 	
-	private void getClickedUnit(){
-		
+	@SuppressWarnings("unused")
+	private Point getMousePosition() {
+		return MouseMonitor.getMousePosition();
+	}
+	
+	private void selectClickedUnit(Point p){
+		UnitManager dummy = null;
+		for(int i = 0; i < dummy.length(); i++){
+			if(dummy.get(i).getPoint() == p){
+				selectID = i;
+			}
+		}
 	}
 	
 	
