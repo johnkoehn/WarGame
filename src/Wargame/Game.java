@@ -21,6 +21,7 @@ public class Game {
 	private Map map;
 	private TextureManager tManager;
 	private RandomUnitGenerator generator;
+	private int selectID;
 	
 	/***
 	 * @param fwinWidth
@@ -106,6 +107,10 @@ public class Game {
 			}
 	}
 	
+	private void getClickedUnit(){
+		
+	}
+	
 	
 	private void checkInput()
 	{
@@ -143,6 +148,13 @@ public class Game {
 			if(Keyboard.isKeyPressed(Key.Z))
 			{
 				camera.zoom((float) .5);
+			}
+			if(Keyboard.isKeyPressed(Key.C)){
+				setViewToActor();
+			}
+			if(Keyboard.isKeyPressed(Key.SPACEBAR)){
+				selectID++;
+				setViewToActor();
 			}
 		}
 	}
