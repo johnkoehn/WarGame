@@ -35,5 +35,15 @@ public class Point {
 	public void changeY(float delta) {
 		ypos += delta;
 	}
+	
+	public int getXTile() {
+		return (int) (xpos / 32);
+//		return 7;
+	}
+	
+	public int getYTile() {
+		return (int) (ypos / 32);
+//		return 7;
+	}
 
 }

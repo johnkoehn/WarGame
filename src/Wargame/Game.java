@@ -93,30 +93,46 @@ public class Game {
 				
 				window.display();
 				
-				checkMousePosition();
+//				checkMousePosition();
+//				getMousePosition();
+
+				if(Mouse.isButtonPressed(Mouse.Button.LEFT))
+				{
+					selectClickedUnit(getMousePosition());
+				}
+				
 			}
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	private void checkMousePosition()
 	{if (Mouse.isButtonPressed(Mouse.Button.LEFT))
-			{Point a = MouseMonitor.getMousePosition();
+			{Point a = MouseMonitor.getMousePosition(window);
 			System.out.println(a.getX() + " " + a.getY());
 			}
 	}
 	
-	@SuppressWarnings("unused")
 	private Point getMousePosition() {
-		return MouseMonitor.getMousePosition();
+		Point p = MouseMonitor.getMousePosition(window);
+		System.out.println("---" + p.getXTile() + " " + p.getYTile() + "---");
+		return p;
 	}
 	
 	private void selectClickedUnit(Point p){
-		UnitManager dummy = null;
-		for(int i = 0; i < dummy.length(); i++){
-			if(dummy.get(i).getPoint() == p){
+//		UnitManager dummy = null;
+//		System.out.println("***" + p.getXTile() + " " + p.getYTile() + "***");
+		for(int i = 0; i < uManager.getLength(); i++){
+			
+//			System.out.println("***" + uManager.getUnit(i).getPoint().getXTile() + " " + uManager.getUnit(i).getPoint().getYTile() + "***");
+			
+			if(uManager.getUnit(i).getPoint().getXTile() == p.getXTile() && uManager.getUnit(i).getPoint().getYTile() == p.getYTile()){
 				selectID = i;
+				System.out.println("TRUE");
+				return;
 			}
 		}
+		System.out.println("FALSE");
 	}
 	
 	
