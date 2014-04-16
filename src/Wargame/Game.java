@@ -16,12 +16,12 @@ public class Game {
 	private RenderWindow window;
 	private Event event;
 	private Color backColor;
-	private Actor actor;
 	private Camera camera;
 	private Map map;
 	private TextureManager tManager;
 	private RandomUnitGenerator generator;
 	private int selectID;
+	private UnitManager uManager;
 	
 	/***
 	 * @param fwinWidth
@@ -44,11 +44,9 @@ public class Game {
 		//initialize the map
 		map = new Map(32, 32, "map.txt");
 		
-		//initialize the Actor
-		actor = new Actor(0, 0, "sprite1.png");
-		
 		setViewToActor();
 		generator = new RandomUnitGenerator(map);
+		uManager = generator.getUnits();
 	}
 	
 	int getWidth()
@@ -91,7 +89,7 @@ public class Game {
 				displayMap();
 				
 				//draw the Actors
-				generator.draw(window);
+				uManager.draw(window);
 				
 				window.display();
 				
@@ -152,7 +150,7 @@ public class Game {
 			if(Keyboard.isKeyPressed(Key.C)){
 				setViewToActor();
 			}
-			if(Keyboard.isKeyPressed(Key.SPACEBAR)){
+			if(Keyboard.isKeyPressed(Key.SPACE)){
 				selectID++;
 				setViewToActor();
 			}
@@ -164,6 +162,8 @@ public class Game {
 	 */
 	public void setViewToActor()
 	{
+		
+		/*
 		//set the view to the player's Actor
 		//start by finding the center of the Actor
 		float xCenter = actor.getWidth() / 2;
@@ -174,6 +174,8 @@ public class Game {
 		float yPos = actor.getY() + yCenter;
 		
 		camera = new Camera(xPos, yPos, (float) winWidth, (float) winHeight);
+		*/
+		camera = new Camera(0, 0, winWidth, winHeight);
 	}
 	
 	/**

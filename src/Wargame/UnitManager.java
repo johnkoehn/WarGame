@@ -65,5 +65,21 @@ public class UnitManager {
 			window.draw(player.get(i).getActor());
 		}
 	}
+	
+	public ActiveUnit getUnit(int index)
+	{
+		if (index > player.size())
+		{
+			System.out.println("Out of bounds for getUnit index, returning first unit");
+			return player.get(0);
+		}
+		
+		return player.get(index);
+	}
+	
+	public int getLength()
+	{
+		return player.size();
+	}
 
 }

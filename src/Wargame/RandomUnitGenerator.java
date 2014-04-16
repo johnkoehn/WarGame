@@ -90,6 +90,11 @@ public class RandomUnitGenerator
 	{
 		uManager.draw(window);
 	}
+	
+	public UnitManager getUnits()
+	{
+		return uManager;
+	}
 }
 
 
