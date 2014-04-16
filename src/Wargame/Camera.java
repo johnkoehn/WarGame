@@ -20,7 +20,7 @@ public class Camera {
 		//now set the view
 		view = new View();
 		view.setCenter(xPos, yPos);
-		view.setSize(width, height);
+		view.setSize(viewWidth, viewHeight);
 	}
 	
 	public void update(float deltaX, float deltaY)
