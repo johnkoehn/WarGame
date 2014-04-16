@@ -33,10 +33,19 @@ public class Map {
 	private Color color2;
 	
 	//array contains all the values that make up the map
+
+	ArrayList<Integer> mapArray;
+
+	
+	//Terrain Library
+	ArrayList<Terrain> terLib;
+
+
 	private ArrayList<Integer> mapArray;
 	
 	// creates a library for the terrain
 	private ArrayList<Terrain> terLib;
+
 	
 	public Map(int ftileWidth, int ftileHeight, String fmapFile) throws FileNotFoundException
 	{
@@ -115,8 +124,18 @@ public class Map {
 		
 		File file = new File(mapFile);
 		Scanner scanner = new Scanner(file);
+
+
+		ArrayList<Integer> mapArray = new ArrayList<Integer>();
+
+		mapArray = new ArrayList<Integer>();
+
+		mapArray = new ArrayList<Integer>();
+
+
 		
 		mapArray = new ArrayList<Integer>();
+
 		while(scanner.hasNextInt())
 		{
 			int newTile = scanner.nextInt();
