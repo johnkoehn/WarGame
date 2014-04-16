@@ -162,6 +162,10 @@ public class Map {
 		dummyString = dummyString.replaceAll("\\s+", "");
 		mapWidth = dummyString.length(); 
 		scanner.close();
+		
+		System.out.println(mapWidth);
+		System.out.println(mapHeight);
+		
 	}
 	
 	public RectangleShape getRectangle(int index)
