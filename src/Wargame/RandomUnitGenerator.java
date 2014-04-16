@@ -76,8 +76,8 @@ public class RandomUnitGenerator
 			int yPos = random.nextInt(height);
 			
 			//update xPos and yPos to pixel coordinates
-			xPos = (int) ((xPos * tileDeminsions.getX()) + (tileDeminsions.getX() / 2));
-			yPos = (int) ((yPos * tileDeminsions.getY()) + (tileDeminsions.getY() / 2));
+			xPos = (int) ((xPos * tileDeminsions.getX()) + (tileDeminsions.getX()));
+			yPos = (int) ((yPos * tileDeminsions.getY()) + (tileDeminsions.getY()));
 			
 			//add this to the unit manager now
 			uManager.addUnit(1, tempUnit, xPos, yPos, "./unit_1.png");

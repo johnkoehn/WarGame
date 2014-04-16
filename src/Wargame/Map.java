@@ -66,9 +66,9 @@ public class Map {
 		Vector2f tileSizes = new Vector2f((float) tileWidth, (float) tileHeight);
 		
 		//fill up ZIE arraylist with rectangleshapes 
-		for (int i= 0; i < mapHeight; i++)
+		for (int i= 0; i < mapWidth; i++)
 		{
-			for(int j = 0; j < mapWidth; j++)
+			for(int j = 0; j < mapHeight; j++)
 			{
 				//create a new rectangle shape
 				RectangleShape temp = new RectangleShape(tileSizes);
@@ -143,6 +143,9 @@ public class Map {
 		dummyString = dummyString.replaceAll("\\s+", "");
 		mapWidth = dummyString.length(); 
 		scanner.close();
+		
+		System.out.println(mapWidth);
+		System.out.println(mapHeight);
 		
 	}
 	
