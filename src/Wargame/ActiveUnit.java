@@ -20,7 +20,9 @@ public class ActiveUnit extends Actor {
 		
 
 	}
-
+	public String getGivenName()
+	{return u.getName();}
+	
 	public int getCurrentHealth() {
 		return currentHealth;
 	}

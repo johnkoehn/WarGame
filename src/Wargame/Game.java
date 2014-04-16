@@ -22,6 +22,7 @@ public class Game {
 	private RandomUnitGenerator generator;
 	private int selectID;
 	private UnitManager uManager;
+	private ActiveUnit selectedUnit;
 	
 	/***
 	 * @param fwinWidth
@@ -169,7 +170,7 @@ public class Game {
 		}
 		
 		//now get the active unit and center the camera on it
-		ActiveUnit temp = uManager.getUnit(selectID);
+		selectedUnit = uManager.getUnit(selectID);
 		float xCenter = temp.getWidth() / 2;
 		float yCenter = temp.getHeight() / 2;
 		
