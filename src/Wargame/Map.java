@@ -33,12 +33,19 @@ public class Map {
 	private Color color2;
 	
 	//array contains all the values that make up the map
+<<<<<<< HEAD
 	ArrayList<Integer> mapArray;
 
 	
 	//Terrain Library
 	ArrayList<Terrain> terLib;
 
+=======
+	private ArrayList<Integer> mapArray;
+	
+	// creates a library for the terrain
+	private ArrayList<Terrain> terLib;
+>>>>>>> origin/master
 	
 	public Map(int ftileWidth, int ftileHeight, String fmapFile) throws FileNotFoundException
 	{
@@ -53,7 +60,6 @@ public class Map {
 		color2 = new Color(56, 147, 192); //water
 		createMap();
 		
-		//imports the terrain list
 		TerrainImporter tImp = new TerrainImporter();
 		terLib = tImp.getList();
 	}
@@ -69,9 +75,9 @@ public class Map {
 		Vector2f tileSizes = new Vector2f((float) tileWidth, (float) tileHeight);
 		
 		//fill up ZIE arraylist with rectangleshapes 
-		for (int i= 0; i < mapHeight; i++)
+		for (int i= 0; i < mapWidth; i++)
 		{
-			for(int j = 0; j < mapWidth; j++)
+			for(int j = 0; j < mapHeight; j++)
 			{
 				//create a new rectangle shape
 				RectangleShape temp = new RectangleShape(tileSizes);
@@ -118,6 +124,7 @@ public class Map {
 		
 		File file = new File(mapFile);
 		Scanner scanner = new Scanner(file);
+<<<<<<< HEAD
 
 		ArrayList<Integer> mapArray = new ArrayList<Integer>();
 
@@ -125,6 +132,10 @@ public class Map {
 
 		mapArray = new ArrayList<Integer>();
 
+=======
+		
+		mapArray = new ArrayList<Integer>();
+>>>>>>> origin/master
 		while(scanner.hasNextInt())
 		{
 			int newTile = scanner.nextInt();
@@ -151,6 +162,9 @@ public class Map {
 		dummyString = dummyString.replaceAll("\\s+", "");
 		mapWidth = dummyString.length(); 
 		scanner.close();
+		
+		System.out.println(mapWidth);
+		System.out.println(mapHeight);
 		
 	}
 	
@@ -200,7 +214,15 @@ public class Map {
 	{
 		return mapArray;
 	}
-
 	
+	public int getTileWidth()
+	{
+		return tileWidth;
+	}
+	
+	public int getTileHeight()
+	{
+		return tileHeight;
+	}
 	
 }

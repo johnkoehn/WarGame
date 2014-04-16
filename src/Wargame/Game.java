@@ -28,6 +28,7 @@ public class Game {
 	private Camera camera;
 	private Map map;
 	private TextureManager tManager;
+	private RandomUnitGenerator generator;
 	
 	/***
 	 * @param fwinWidth
@@ -64,6 +65,7 @@ public class Game {
 		text2 = new Text("Are",arial,15);
 		
 		setViewToActor();
+		generator = new RandomUnitGenerator(map);
 	}
 	
 	int getWidth()
@@ -107,6 +109,7 @@ public class Game {
 				displayMap();
 				
 				//draw the Actors
+<<<<<<< HEAD
 				window.draw(actor.getActor());
 				text1.setPosition(100,100);
 				text2.setPosition(300,100);
@@ -114,6 +117,10 @@ public class Game {
 				subWindow1.draw(text2);
 				text1.setColor(new Color(255,255,255));
 				text2.setColor(new Color(255,255,255));
+=======
+				generator.draw(window);
+				
+>>>>>>> origin/master
 				window.display();
 				subWindow1.display();
 				text1.setString("an");
@@ -144,32 +151,35 @@ public class Game {
 			
 			if(Keyboard.isKeyPressed(Key.W))
 			{
-				actor.updateY((float) -1);
-				camera.update(0, -1);
+				//actor.updateY((float) -1);
+				camera.update(0, -10);
 				//System.out.println(camera.getX() + " " + camera.getY());
 			}
 			if (Keyboard.isKeyPressed(Key.S))
 			{
-				actor.updateY((float) 1);
-				camera.update(0,  1);
+				//actor.updateY((float) 1);
+				camera.update(0,  10);
 				//System.out.println(camera.getX() + " " + camera.getY());
 			}
 			if (Keyboard.isKeyPressed(Key.A))
 			{
-				actor.updateX((float) -1);
-				camera.update(-1, 0);
+				//actor.updateX((float) -1);
+				camera.update(-10, 0);
 				//System.out.println(camera.getX() + " " + camera.getY());
 			}
 			if (Keyboard.isKeyPressed(Key.D))
 			{
-				actor.updateX((float) 1);
-				camera.update(1,  0);
+				//actor.updateX((float) 1);
+				camera.update(10,  0);
 				//System.out.println(camera.getX() + " " + camera.getY());
-				//camera.zoom((float) 1.001);
 			}
 			if (Keyboard.isKeyPressed(Key.X))
 			{
 				camera.zoom((float) 2);
+			}
+			if(Keyboard.isKeyPressed(Key.Z))
+			{
+				camera.zoom((float) .5);
 			}
 		}
 	}

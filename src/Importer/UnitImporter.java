@@ -1,4 +1,5 @@
 package Importer;
+//random comment
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import Wargame.Unit;
 public class UnitImporter {
 
 	private ArrayList<Unit> unitList = new ArrayList<Unit>();
-	public final String DEFUALT_ADDRESS = "./UnitStatV1.csv";
+	public final String DEFUALT_ADDRESS = "./UnitStatV2.csv";
 
 	public UnitImporter(String address) throws IOException {
 
@@ -23,14 +24,15 @@ public class UnitImporter {
 		}
 	}
 
+	// skips header of import
 	public UnitImporter() throws IOException {
 
 		CSVImporter reader = new CSVImporter(DEFUALT_ADDRESS);
 		ArrayList<String> list = reader.getCSVList();
 
-		for (int i = 0; i < list.size(); i++) {
+		for (int i = 1; i < list.size(); i++) {
 			parsHelper(list.get(i));
-			// System.out.println(unitList.get(i));
+//			System.out.println(unitList.get(i));
 		}
 	}
 
