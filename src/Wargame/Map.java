@@ -51,8 +51,7 @@ public class Map {
 		color2 = new Color(56, 147, 192); //water
 		createMap();
 		
-		TerrainImporter tImp = new TerrainImporter();
-		terLib = tImp.getList();
+		terLib = TerrainImporter.Importer();
 	}
 	
 	/**

@@ -8,34 +8,21 @@ import Wargame.Terrain;
 
 public class TerrainImporter {
 
-	private ArrayList<Terrain> terList = new ArrayList<Terrain>();
-	public final String DEFUALT_ADDRESS = "./TerrainStatV1.csv";
-
-	public TerrainImporter(String address) throws FileNotFoundException {
-
-		CSVImporter reader = new CSVImporter(address);
-		ArrayList<String> list = reader.getCSVList();
-
-		// skips header of import
-		for (int i = 1; i < list.size(); i++) {
-			parsHelper(list.get(i));
-			// System.out.println(terList.get(i));
-		}
-	}
-
-	public TerrainImporter() throws FileNotFoundException {
-
-		CSVImporter reader = new CSVImporter(DEFUALT_ADDRESS);
-		ArrayList<String> list = reader.getCSVList();
+	private static ArrayList<Terrain> terList = new ArrayList<Terrain>();
+	public static final String DEFUALT_ADDRESS = "./TerrainStatV1.csv";
+	
+	public static ArrayList<Terrain> Importer() throws FileNotFoundException{
+		ArrayList<String> list = CSVImporter.Import(DEFUALT_ADDRESS);
 
 		// skips header of import
 		for (int i = 1; i < list.size(); i++) {
 			parsHelper(list.get(i));
 			System.out.println(terList.get(i));
 		}
+		return terList;
 	}
 
-	private void parsHelper(String s) {
+	private static void parsHelper(String s) {
 		Scanner v = new Scanner(s);
 		v.useDelimiter(",");
 
@@ -46,9 +33,5 @@ public class TerrainImporter {
 				v.nextInt(), // defense
 				v.nextInt()));// moveCost
 		v.close();
-	}
-
-	public ArrayList<Terrain> getList() {
-		return terList;
 	}
 }

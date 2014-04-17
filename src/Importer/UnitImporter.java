@@ -1,6 +1,7 @@
 package Importer;
 //random comment
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,34 +10,21 @@ import Wargame.Unit;
 
 public class UnitImporter {
 
-	private ArrayList<Unit> unitList = new ArrayList<Unit>();
-	public final String DEFUALT_ADDRESS = "./UnitStatV2.csv";
-
-	public UnitImporter(String address) throws IOException {
-
-		CSVImporter reader = new CSVImporter(address);
-		ArrayList<String> list = reader.getCSVList();
+	private static ArrayList<Unit> unitList = new ArrayList<Unit>();
+	public static final String DEFUALT_ADDRESS = "./UnitStatV2.csv";
+	
+	public static ArrayList<Unit> Importer() throws IOException {
+		ArrayList<String> list = CSVImporter.Import(DEFUALT_ADDRESS);
 
 		// skips header of import
 		for (int i = 1; i < list.size(); i++) {
 			parsHelper(list.get(i));
 			// System.out.println(unitList.get(i));
 		}
+		return unitList;
 	}
-
-	// skips header of import
-	public UnitImporter() throws IOException {
-
-		CSVImporter reader = new CSVImporter(DEFUALT_ADDRESS);
-		ArrayList<String> list = reader.getCSVList();
-
-		for (int i = 1; i < list.size(); i++) {
-			parsHelper(list.get(i));
-//			System.out.println(unitList.get(i));
-		}
-	}
-
-	private void parsHelper(String s) throws IOException {
+	
+	private static void parsHelper(String s) throws IOException {
 		Scanner v = new Scanner(s);
 		v.useDelimiter(",");
 
@@ -54,9 +42,5 @@ public class UnitImporter {
 				v.nextDouble()); // given WeaknessMult
 		unitList.add(temp);
 		v.close();
-	}
-
-	public ArrayList<Unit> getList() {
-		return unitList;
 	}
 }

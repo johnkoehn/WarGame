@@ -137,6 +137,7 @@ public class Game {
 					&& uManager.getUnit(i).getPoint().getYTile() == p
 							.getYTile()) {
 				selectID = i;
+				currentUnit = uManager.getUnit(selectID);
 				System.out.println("TRUE");
 				return;
 			}
