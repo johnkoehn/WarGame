@@ -17,9 +17,8 @@ import java.util.Scanner;;
 
 public class Map {
 	//TIME TO MAKE MANY RECTANGLES FOR MAP
-	private ArrayList<RectangleShape> tiles = new ArrayList<RectangleShape>();
-	private int tileWidth;
-	private int tileHeight;
+	private ArrayList<Tile> tiles = new ArrayList<Tile>();
+	private Point tileDeminisons;
 	private String mapFile;
 	
 	
@@ -40,8 +39,7 @@ public class Map {
 	
 	public Map(int ftileWidth, int ftileHeight, String fmapFile) throws FileNotFoundException
 	{
-		tileWidth = ftileWidth;
-		tileHeight = ftileHeight;
+		tileDeminisons = new Point(ftileWidth, ftileHeight);
 		mapFile = fmapFile;
 		mapHeight = 0;
 		mapWidth = 0;
@@ -62,44 +60,38 @@ public class Map {
 	{
 		//prep for creating the map
 		ArrayList<Integer> mapArray = readFile();
-		Vector2f tileSizes = new Vector2f((float) tileWidth, (float) tileHeight);
 		
 		//fill up ZIE arraylist with rectangleshapes 
 		for (int i= 0; i < mapWidth; i++)
 		{
 			for(int j = 0; j < mapHeight; j++)
-			{
-				//create a new rectangle shape
-				RectangleShape temp = new RectangleShape(tileSizes);
+			{				
+				//calculate the tiles Origin
+				float x = -(i * tileDeminisons.getX());
+				float y = -(j * tileDeminisons.getY());
 				
-				//calculate its origins
-				float x = -(i * tileWidth);
-				float y = -(j * tileHeight);
+				Point position = new Point(x, y);
 				
-				//set its origins
-				temp.setOrigin(x, y);
-				
+				Tile temp;
 				//determine its color
-				//System.out.println(mapArray.get(i*mapWidth + j));
 				int colorID = mapArray.get(i*mapWidth + j);
 				if (colorID == 0)
 				{
-					temp.setFillColor(color0);
+					temp = new Tile(color0, tileDeminisons, position);
 				}
 				else if (colorID == 1)
 				{
-					temp.setFillColor(color1);
+					temp = new Tile(color1, tileDeminisons, position);
 				}
 				else if (colorID == 2)
 				{
-					temp.setFillColor(color2);
+					temp = new Tile(color2, tileDeminisons, position);
 				}
 				else 
 				{
-					temp.setFillColor(color0);
+					temp = new Tile(color0, tileDeminisons, position);
 				}
 
-				
 				//add it to the arraylist
 				tiles.add(temp);
 				
@@ -144,8 +136,13 @@ public class Map {
 		scanner.close();		
 	}
 	
-	public RectangleShape getRectangle(int index)
+	public Tile getTile(int index)
 	{
+		if(index < tiles.size())
+		{
+			System.out.println("Get tile index out of bounds!");
+			return tiles.get(0);
+		}
 		return tiles.get(index);
 	}
 	
@@ -162,7 +159,7 @@ public class Map {
 	{
 		for (int i = 0; i < tiles.size(); i++)
 		{
-			window.draw(tiles.get(i));
+			window.draw(tiles.get(i).getRectangle());
 		}
 	}
 	
@@ -178,12 +175,12 @@ public class Map {
 	
 	public int mapWidthPixels()
 	{
-		return (mapWidth * tileWidth);
+		return (int) (mapWidth * tileDeminisons.getX());
 	}
 	
 	public int mapHeightPixels()
 	{
-		return (mapHeight * tileHeight);
+		return (int) (mapHeight * tileDeminisons.getY());
 	}
 	
 	public ArrayList<Integer> getList()
@@ -193,12 +190,12 @@ public class Map {
 	
 	public int getTileWidth()
 	{
-		return tileWidth;
+		return (int) tileDeminisons.getX();
 	}
 	
 	public int getTileHeight()
 	{
-		return tileHeight;
+		return (int) tileDeminisons.getY();
 	}
 	
 }
