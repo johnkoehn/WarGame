@@ -39,24 +39,24 @@ public class Game {
 		winWidth = fwinWidth;
 		winHeight = fwinHeight;
 
-		backColor = new Color(0, 0, 255); // blue
+		backColor = new Color(112, 48, 160); // purple
 
 		// initialize the window
 		VideoMode mode = new VideoMode(winWidth, winHeight);
 		window = new RenderWindow(mode, title);
 
 		// initialize the map
-//		map = new Map(32, 32, "map.txt");
-		map = new Map (32, 32, 50, 50);
-		
+		// map = new Map(32, 32, "map.txt");
+		map = new Map(32, 32, 150, 150);
+
 		generator = new RandomUnitGenerator(map);
 		uManager = generator.getUnits();
-		
+
 		camera = new Camera(0, 0, winWidth, winHeight);
 		selectID = 0;
 		setViewToActor();
-		
-//		RandomMapGenerator.makeMap(50, 50);
+
+		// RandomMapGenerator.makeMap(50, 50);
 		// reticule = new Reticule(MouseMonitor.getMousePosition(window));
 	}
 
@@ -98,7 +98,7 @@ public class Game {
 				// draw the Actors
 				uManager.draw(window);
 				// reticule.draw(window);
-				
+
 				window.display();
 				unitWindow.drawUnitInfo(currentUnit);
 				unitWindow.displayWindow();
@@ -148,8 +148,8 @@ public class Game {
 
 	private void checkInput() {
 		if (event.type == Type.KEY_PRESSED) {
-			
-			//camera moving commands
+
+			// camera moving commands
 			if (Keyboard.isKeyPressed(Key.W)) {
 				// actor.updateY((float) -1);
 				camera.update(0, -10);
@@ -170,16 +170,16 @@ public class Game {
 				camera.update(10, 0);
 				// System.out.println(camera.getX() + " " + camera.getY());
 			}
-			
-			//zooming commands
+
+			// zooming commands
 			if (Keyboard.isKeyPressed(Key.X)) {
 				camera.zoom((float) 2);
 			}
 			if (Keyboard.isKeyPressed(Key.Z)) {
 				camera.zoom((float) .5);
 			}
-			
-			//setting view commands
+
+			// setting view commands
 			if (Keyboard.isKeyPressed(Key.C)) {
 				setViewToActor();
 			}
@@ -187,22 +187,18 @@ public class Game {
 				selectID++;
 				setViewToActor();
 			}
-			
-			//moving active unit commands
-			if (Keyboard.isKeyPressed(Key.UP))
-			{
+
+			// moving active unit commands
+			if (Keyboard.isKeyPressed(Key.UP)) {
 				currentUnit.moveUp();
 			}
-			if (Keyboard.isKeyPressed(Key.DOWN))
-			{
+			if (Keyboard.isKeyPressed(Key.DOWN)) {
 				currentUnit.moveDown();
 			}
-			if (Keyboard.isKeyPressed(Key.LEFT))
-			{
+			if (Keyboard.isKeyPressed(Key.LEFT)) {
 				currentUnit.moveLeft();
 			}
-			if (Keyboard.isKeyPressed(Key.RIGHT))
-			{
+			if (Keyboard.isKeyPressed(Key.RIGHT)) {
 				currentUnit.moveRight();
 			}
 		}
@@ -211,15 +207,13 @@ public class Game {
 	/**
 	 * Method centers the camera view on a unit based on the selectID
 	 */
-	public void setViewToActor()
-	{
-		//check if the selectID is over bounds
-		if (selectID >= uManager.getLength())
-		{
+	public void setViewToActor() {
+		// check if the selectID is over bounds
+		if (selectID >= uManager.getLength()) {
 			selectID = 0;
 		}
 
-		//now get the active unit and center the camera on it
+		// now get the active unit and center the camera on it
 		currentUnit = uManager.getUnit(selectID);
 		float xCenter = currentUnit.getWidth() / 2;
 		float yCenter = currentUnit.getHeight() / 2;

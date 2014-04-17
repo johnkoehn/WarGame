@@ -22,8 +22,8 @@ public class RandomMapGenerator {
 			mapExpand();
 		}
 
-		printMap();
-		
+		// printMap();
+
 		return getMap();
 
 	}
@@ -49,13 +49,13 @@ public class RandomMapGenerator {
 			y = rand.nextInt(ySize);
 
 			if (temp <= 10) {
-				map[y][x] = 0; //grass
+				map[y][x] = 0; // grass
 			} else if (temp <= 14) {
-				map[y][x] = 1; //sand
+				map[y][x] = 1; // sand
 			} else if (temp <= 17) {
-				map[y][x] = 2; //water
+				map[y][x] = 2; // water
 			} else if (temp <= 19) {
-				map[y][x] = 3; //mountain
+				map[y][x] = 3; // mountain
 			}
 		}
 	}
