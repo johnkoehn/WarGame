@@ -42,7 +42,8 @@ public class TextureManager {
 	public Texture getTexture(int texID) {
 		// find zie texture!
 		for (int i = 0; i < textures.size(); i++) {
-			if (texID == (textures.get(i)).getID()) {
+			if (texID == (textures.get(i)).getID()) 
+			{
 				return (textures.get(i)).getTexture();
 			}
 		}
