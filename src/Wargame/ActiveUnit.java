@@ -17,6 +17,10 @@ public class ActiveUnit extends Actor {
 		super(fxPos, fyPos, textureFile);
 
 		u = givenUnit;
+		currentHealth = u.getTotalHealth();
+		currentFuel = u.getTotalFuel();
+		currentAmmo = u.getTotalAmmo();
+		currentMovePoints = u.getTotalMovePoints();
 		
 
 	}
@@ -133,5 +137,9 @@ public class ActiveUnit extends Actor {
 	
 	public boolean isAlive(){
 		return currentHealth > u.getTotalHealth();
+	}
+
+	public String getGivenName() {
+		return u.getName();
 	}
 }
