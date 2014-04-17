@@ -142,4 +142,62 @@ public class ActiveUnit extends Actor {
 	public String getGivenName() {
 		return u.getName();
 	}
+	
+	/**
+	 * Unit movement commands
+	 */
+	public boolean moveLeft()
+	{
+		if ((currentMovePoints - 10) >= 0)
+		{
+			updateX(-32);
+			currentMovePoints -= 10;
+			
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean moveRight()
+	{
+		if ((currentMovePoints - 10) >= 0)
+		{
+			updateX(32);
+			currentMovePoints -= 10;
+			
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean moveUp()
+	{
+		if ((currentMovePoints - 10) >= 0)
+		{
+			updateY(-32);
+			currentMovePoints -= 10;
+			
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean moveDown()
+	{
+		if ((currentMovePoints - 10) >= 0)
+		{
+			updateY(32);
+			currentMovePoints -= 10;
+			
+			return true;
+		}
+		return false;
+	}
+	
+	
+	
+	
+	
+	
+	
 }
