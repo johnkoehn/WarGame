@@ -66,10 +66,6 @@ public class RandomUnitGenerator
 			{
 				System.out.println(i + " O crap! " + ID);
 			}
-			else
-			{
-				System.out.println("GOOD");
-			}
 			
 			//now, get a random location for this cute little unit
 			int xPos = random.nextInt(width);

@@ -141,11 +141,7 @@ public class Map {
 		//now use the dummyString to calculate the number of columns
 		dummyString = dummyString.replaceAll("\\s+", "");
 		mapWidth = dummyString.length(); 
-		scanner.close();
-		
-		System.out.println(mapWidth);
-		System.out.println(mapHeight);
-		
+		scanner.close();		
 	}
 	
 	public RectangleShape getRectangle(int index)
