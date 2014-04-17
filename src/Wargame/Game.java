@@ -46,7 +46,8 @@ public class Game {
 		window = new RenderWindow(mode, title);
 
 		// initialize the map
-		map = new Map(32, 32, "map.txt");
+//		map = new Map(32, 32, "map.txt");
+		map = new Map (32, 32, 50, 50);
 		
 		generator = new RandomUnitGenerator(map);
 		uManager = generator.getUnits();
@@ -55,7 +56,7 @@ public class Game {
 		selectID = 0;
 		setViewToActor();
 		
-		RandomMapGenerator.makeMap(50, 50);
+//		RandomMapGenerator.makeMap(50, 50);
 		// reticule = new Reticule(MouseMonitor.getMousePosition(window));
 	}
 

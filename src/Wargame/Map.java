@@ -30,12 +30,33 @@ public class Map {
 	private Color color0;
 	private Color color1;
 	private Color color2;
+	private Color color3;
 	
 	//array contains all the values that make up the map
 	private ArrayList<Integer> mapArray;
 	
 	// creates a library for the terrain
 	private ArrayList<Terrain> terLib;
+	
+	public Map(int ftileWidth, int ftileHeight, int xMax, int yMax) throws FileNotFoundException
+	{
+		tileDeminisons = new Point(ftileWidth, ftileHeight);
+		mapFile = null;
+		mapHeight = yMax;
+		mapWidth = xMax;
+		
+		color0 = new Color(112, 173, 71); //grass
+		color1 = new Color(255, 197, 13); //desert 
+		color2 = new Color(91, 155, 213); //water
+		color3 = new Color(89, 89, 89); //mountain
+		
+		//creates map
+		mapArray = RandomMapGenerator.makeMap(xMax, yMax);
+		
+		createMap();
+		
+		terLib = TerrainImporter.Importer();
+	}
 	
 	public Map(int ftileWidth, int ftileHeight, String fmapFile) throws FileNotFoundException
 	{
@@ -44,9 +65,14 @@ public class Map {
 		mapHeight = 0;
 		mapWidth = 0;
 		
-		color0 = new Color(255, 255, 0); //desert 
-		color1 = new Color(45, 255, 4); //grass
+		color0 = new Color(45, 255, 4); //grass
+		color1 = new Color(255, 255, 0); //desert 
 		color2 = new Color(56, 147, 192); //water
+		color3 = new Color(0, 0, 0); //mountain
+		
+		//creates map
+		mapArray = readMapFile();
+		
 		createMap();
 		
 		terLib = TerrainImporter.Importer();
@@ -58,9 +84,6 @@ public class Map {
 	 */
 	public void createMap() throws FileNotFoundException
 	{
-		//prep for creating the map
-		ArrayList<Integer> mapArray = readFile();
-		
 		//fill up ZIE arraylist with rectangleshapes 
 		for (int i= 0; i < mapWidth; i++)
 		{
@@ -87,9 +110,13 @@ public class Map {
 				{
 					temp = new Tile(color2, tileDeminisons, position);
 				}
-				else 
+				else if (colorID == 3)
 				{
-					temp = new Tile(color0, tileDeminisons, position);
+					temp = new Tile(color3, tileDeminisons, position);
+				}
+				else
+				{
+					temp = new Tile(color3, tileDeminisons, position);
 				}
 
 				//add it to the arraylist
@@ -99,7 +126,8 @@ public class Map {
 		}
 	}
 	
-	private ArrayList<Integer> readFile() throws FileNotFoundException
+	@SuppressWarnings("unused")
+	private ArrayList<Integer> readMapFile() throws FileNotFoundException
 	{
 		//first calculate # of columns and rows of the file
 		calculateDimensions();
@@ -107,15 +135,15 @@ public class Map {
 		File file = new File(mapFile);
 		Scanner scanner = new Scanner(file);
 		
-		mapArray = new ArrayList<Integer>();
+		ArrayList<Integer> tempMapArray = new ArrayList<Integer>();
 		while(scanner.hasNextInt())
 		{
 			int newTile = scanner.nextInt();
-			mapArray.add(newTile);
+			tempMapArray.add(newTile);
 		}
 		
 		scanner.close();
-		return mapArray;
+		return tempMapArray;
 	}
 	
 	private void calculateDimensions() throws FileNotFoundException
