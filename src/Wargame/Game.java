@@ -55,7 +55,7 @@ public class Game {
 		selectID = 0;
 		setViewToActor();
 		
-		unitWindow = new UnitDisplay();
+		
 		// reticule = new Reticule(MouseMonitor.getMousePosition(window));
 	}
 
@@ -71,6 +71,7 @@ public class Game {
 	 * This function will keep looping until we quit the game
 	 */
 	void runGame() {
+		unitWindow = new UnitDisplay(window);
 		while (window.isOpen()) {
 			// check for new window events that occurred since the last loop
 			// iteration
@@ -96,9 +97,8 @@ public class Game {
 				// draw the Actors
 				uManager.draw(window);
 				// reticule.draw(window);
-
-				window.display();
 				
+				window.display();
 				unitWindow.drawUnitInfo(currentUnit);
 				unitWindow.displayWindow();
 
