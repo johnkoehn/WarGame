@@ -147,7 +147,8 @@ public class Game {
 
 	private void checkInput() {
 		if (event.type == Type.KEY_PRESSED) {
-
+			
+			//camera moving commands
 			if (Keyboard.isKeyPressed(Key.W)) {
 				// actor.updateY((float) -1);
 				camera.update(0, -10);
@@ -168,18 +169,40 @@ public class Game {
 				camera.update(10, 0);
 				// System.out.println(camera.getX() + " " + camera.getY());
 			}
+			
+			//zooming commands
 			if (Keyboard.isKeyPressed(Key.X)) {
 				camera.zoom((float) 2);
 			}
 			if (Keyboard.isKeyPressed(Key.Z)) {
 				camera.zoom((float) .5);
 			}
+			
+			//setting view commands
 			if (Keyboard.isKeyPressed(Key.C)) {
 				setViewToActor();
 			}
 			if (Keyboard.isKeyPressed(Key.SPACE)) {
 				selectID++;
 				setViewToActor();
+			}
+			
+			//moving active unit commands
+			if (Keyboard.isKeyPressed(Key.UP))
+			{
+				currentUnit.moveUp();
+			}
+			if (Keyboard.isKeyPressed(Key.DOWN))
+			{
+				currentUnit.moveDown();
+			}
+			if (Keyboard.isKeyPressed(Key.LEFT))
+			{
+				currentUnit.moveLeft();
+			}
+			if (Keyboard.isKeyPressed(Key.RIGHT))
+			{
+				currentUnit.moveRight();
 			}
 		}
 	}
