@@ -18,7 +18,6 @@ public class UnitLibrary {
 	
 	public Unit getUnit(int ID) {
 		for(int i = 0; i < list.size(); i++) {
-			System.out.println("R" + list.get(i).getUnitID());
 			if(list.get(i).getUnitID() == ID) {
 				return list.get(i);
 			}
