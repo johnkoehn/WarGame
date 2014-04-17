@@ -13,26 +13,8 @@ public class UnitLibrary {
 	private ArrayList<Unit> list;
 	public UnitLibrary() throws IOException
 	{
-		UnitImporter def = new UnitImporter();
-		list = def.getList();
+		list = UnitImporter.Importer();
 	}
-	
-//	public Unit getUnit(int ID)
-//	{
-//		for (int i=0;i<list.size();i++)
-//		{
-//			if (list.get(i).getUnitID() == ID)
-//			{
-//				System.out.println("T" + i);
-//				return list.get(i);
-//			}
-//			else
-//			{
-//				System.out.println("S" + i);
-//			}
-//		}
-//		return null;
-//	}
 	
 	public Unit getUnit(int ID) {
 		for(int i = 0; i < list.size(); i++) {
