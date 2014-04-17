@@ -22,7 +22,9 @@ public class Game {
 	private TextureManager tManager;
 	private RandomUnitGenerator generator;
 	private int selectID;
+	private ActiveUnit currentUnit;
 	private UnitManager uManager;
+	private UnitDisplay unitWindow;
 
 	// private Reticule reticule;
 
@@ -45,11 +47,15 @@ public class Game {
 
 		// initialize the map
 		map = new Map(32, 32, "map.txt");
-
-		camera = new Camera(0, 0, winWidth, winHeight);
-		selectID = 0;
+		
 		generator = new RandomUnitGenerator(map);
 		uManager = generator.getUnits();
+		
+		camera = new Camera(0, 0, winWidth, winHeight);
+		selectID = 0;
+		setViewToActor();
+		
+		unitWindow = new UnitDisplay();
 		// reticule = new Reticule(MouseMonitor.getMousePosition(window));
 	}
 
@@ -92,6 +98,9 @@ public class Game {
 				// reticule.draw(window);
 
 				window.display();
+				
+				unitWindow.drawUnitInfo(currentUnit);
+				unitWindow.displayWindow();
 
 				// checkMousePosition();
 				// getMousePosition();
@@ -186,12 +195,12 @@ public class Game {
 		}
 
 		//now get the active unit and center the camera on it
-		ActiveUnit temp = uManager.getUnit(selectID);
-		float xCenter = temp.getWidth() / 2;
-		float yCenter = temp.getHeight() / 2;
+		currentUnit = uManager.getUnit(selectID);
+		float xCenter = currentUnit.getWidth() / 2;
+		float yCenter = currentUnit.getHeight() / 2;
 
-		float xPos = temp.getX() + xCenter;
-		float yPos = temp.getY() + yCenter;
+		float xPos = currentUnit.getX() + xCenter;
+		float yPos = currentUnit.getY() + yCenter;
 
 		camera = new Camera(xPos, yPos, winWidth, winHeight);
 	}
