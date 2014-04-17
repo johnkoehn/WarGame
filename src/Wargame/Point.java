@@ -1,5 +1,7 @@
 package Wargame;
 
+import org.jsfml.system.Vector2f;
+
 public class Point {
 	private float xpos;
 	private float ypos;
@@ -44,6 +46,12 @@ public class Point {
 	public int getYTile() {
 		return (int) (ypos / 32);
 //		return 7;
+	}
+	
+	public Vector2f getVector2f()
+	{
+		Vector2f temp = new Vector2f(xpos, ypos);
+		return temp;
 	}
 
 }
