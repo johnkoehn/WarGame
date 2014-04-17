@@ -55,7 +55,7 @@ public class Game {
 		selectID = 0;
 		setViewToActor();
 		
-		
+		RandomMapGenerator.makeMap(50, 50);
 		// reticule = new Reticule(MouseMonitor.getMousePosition(window));
 	}
 
