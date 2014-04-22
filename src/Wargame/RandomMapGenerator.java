@@ -22,6 +22,10 @@ public class RandomMapGenerator {
 			mapExpand();
 		}
 
+		for (int i = 0; i < 3; i++) {
+			islandFixer();
+		}
+
 		// printMap();
 
 		return getMap();
@@ -76,7 +80,8 @@ public class RandomMapGenerator {
 		for (int y = 0; y < ySize; y++) {
 			for (int x = 0; x < xSize; x++) {
 
-				if (map[y][x] != -1 && rand.nextBoolean()) {
+				if (map[y][x] != -1
+						&& (rand.nextBoolean() && rand.nextBoolean())) {
 
 					// check up
 					if (map[Math.max(0, y - 1)][x] == -1) {
@@ -101,6 +106,63 @@ public class RandomMapGenerator {
 
 			}
 		}
+	}
+
+	private static void islandFixer() {
+		boolean island = true;
+		Random rand = new Random();
+
+		for (int y = 0; y < ySize; y++) {
+			for (int x = 0; x < xSize; x++) {
+				if (islandCheck(x, y)) {
+					switch (rand.nextInt(4)) {
+					case 0:
+						map[Math.max(0, y - 1)][x] = map[y][x];
+						break;
+					case 1:
+						map[Math.min(ySize - 1, y + 1)][x] = map[y][x];
+						break;
+					case 2:
+						map[y][Math.max(0, x - 1)] = map[y][x];
+						break;
+					case 3:
+						map[y][Math.min(xSize - 1, x + 1)] = map[y][x];
+						break;
+					case 4:
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	private static boolean islandCheck(int x, int y) {
+		boolean island = true;
+
+		// check up
+		if (map[Math.max(0, y - 1)][x] == map[y][x]) {
+			island = false;
+		}
+
+		// check down
+		if (map[Math.min(ySize - 1, y + 1)][x] == map[y][x]) {
+			island = false;
+		}
+
+		// check left
+		if (map[y][Math.max(0, x - 1)] == map[y][x]) {
+			island = false;
+		}
+
+		// check right
+		if (map[y][Math.min(xSize - 1, x + 1)] == map[y][x]) {
+			island = false;
+		}
+		return island;
+	}
+
+	private static void surrCheck() {
+
 	}
 
 	private static void printMap() {

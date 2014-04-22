@@ -47,7 +47,7 @@ public class Game {
 
 		// initialize the map
 		// map = new Map(32, 32, "map.txt");
-		map = new Map(32, 32, 150, 150);
+		map = new Map(32, 32, 80, 80);
 
 		generator = new RandomUnitGenerator(map);
 		uManager = generator.getUnits();
