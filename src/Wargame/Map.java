@@ -6,6 +6,7 @@ import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
 
 import Importer.TerrainImporter;
+import MapMaker.MapGen;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -33,6 +34,7 @@ public class Map {
 	private Color color1;
 	private Color color2;
 	private Color color3;
+	private Color color4;
 
 	// array contains all the values that make up the map
 	private ArrayList<Integer> mapArray;
@@ -51,15 +53,17 @@ public class Map {
 		color1 = new Color(255, 197, 13); // desert
 		color2 = new Color(91, 155, 213); // water
 		color3 = new Color(89, 89, 89); // mountain
-
+		color4 = new Color(7, 7, 7);
+		
 		// creates map
-		mapArray = RandomMapGenerator.makeMap(xMax, yMax);
+//		mapArray = RandomMapGenerator.makeMap(xMax, yMax);
+		mapArray = MapGen.makeMap(xMax, yMax);
 
 		createMap();
 
-		terLib = TerrainImporter.Importer();
+//		terLib = TerrainImporter.Importer();
 	}
-
+/*
 	public Map(int ftileWidth, int ftileHeight, String fmapFile)
 			throws FileNotFoundException {
 		tileDeminisons = new Point(ftileWidth, ftileHeight);
@@ -79,6 +83,7 @@ public class Map {
 
 		terLib = TerrainImporter.Importer();
 	}
+	*/
 
 	/**
 	 * Creates all the rectangles for the map
@@ -107,7 +112,7 @@ public class Map {
 				} else if (colorID == 3) {
 					temp = new Tile(color3, tileDeminisons, position);
 				} else {
-					temp = new Tile(color3, tileDeminisons, position);
+					temp = new Tile(color4, tileDeminisons, position);
 				}
 
 				// add it to the arraylist
@@ -200,6 +205,12 @@ public class Map {
 
 	public int getTileHeight() {
 		return (int) tileDeminisons.getY();
+	}
+	
+	public void newMap() throws FileNotFoundException {
+		mapArray = MapGen.makeMap(mapHeight, mapWidth);
+		tiles = new ArrayList<Tile>();
+		createMap();
 	}
 
 }

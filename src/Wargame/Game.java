@@ -1,5 +1,6 @@
 package Wargame;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.jsfml.graphics.Color;
@@ -70,8 +71,9 @@ public class Game {
 
 	/**
 	 * This function will keep looping until we quit the game
+	 * @throws FileNotFoundException 
 	 */
-	void runGame() {
+	void runGame() throws FileNotFoundException {
 		unitWindow = new UnitDisplay(window);
 		while (window.isOpen()) {
 			// check for new window events that occurred since the last loop
@@ -146,7 +148,7 @@ public class Game {
 		System.out.println("FALSE");
 	}
 
-	private void checkInput() {
+	private void checkInput() throws FileNotFoundException {
 		if (event.type == Type.KEY_PRESSED) {
 
 			// camera moving commands
@@ -200,6 +202,12 @@ public class Game {
 			}
 			if (Keyboard.isKeyPressed(Key.RIGHT)) {
 				currentUnit.moveRight();
+			}
+			
+			// refresh map
+			if (Keyboard.isKeyPressed(Key.P)) {
+				map.newMap();
+				displayMap();
 			}
 		}
 	}
