@@ -86,9 +86,10 @@ public class Map {
 	 * @throws FileNotFoundException
 	 */
 	public void createMap() throws FileNotFoundException {
-		// fill up ZIE arraylist with rectangleshapes
+		// fill up ZIE arraylist with tiles
 		for (int i = 0; i < mapWidth; i++) {
 			for (int j = 0; j < mapHeight; j++) {
+				
 				// calculate the tiles Origin
 				float x = -(i * tileDeminisons.getX());
 				float y = -(j * tileDeminisons.getY());
@@ -200,6 +201,15 @@ public class Map {
 
 	public int getTileHeight() {
 		return (int) tileDeminisons.getY();
+	}
+	
+	/**
+	 * Returns the arraylist of tiles that make up the map
+	 * @return
+	 */
+	public ArrayList<Tile> getTileList()
+	{
+		return tiles;
 	}
 
 }
