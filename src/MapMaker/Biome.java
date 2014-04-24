@@ -3,53 +3,85 @@ package MapMaker;
 import java.awt.Point;
 import java.util.ArrayList;
 
-
-
+/**
+ * A Class to contain information about a biome for a 2D map
+ * 
+ * @author Alex
+ * 
+ */
 public class Biome {
 
-	private ArrayList<Point> node;
-	private int ID;
+	/**
+	 * the area the biome will take up
+	 */
 	public final int AREA = 30;
+	/**
+	 * the list of points in the biome
+	 */
+	private ArrayList<Point> node;
+	/**
+	 * the starting location of the biome
+	 */
 	private Point seed;
+	/**
+	 * the type of biome that is produced
+	 */
 	private int type;
 
-
-
-	public Biome(int givenID) {
-		ID = givenID;
-		node = new ArrayList<Point>();
-//		node.add(start);
-	}
-	
-	public Biome(int givenID, Point start, int givenType) {
-		ID = givenID;
+	/**
+	 * Constructs a Biome
+	 * 
+	 * @param start
+	 *            the starting location for the biome
+	 * @param givenType
+	 *            the type of biome
+	 */
+	public Biome(Point start, int givenType) {
 		node = new ArrayList<Point>();
 		node.add(start);
 		seed = start;
 		type = givenType;
 	}
-	
-	public void addPoint(Point p){
+
+	/**
+	 * Adds a point to the node
+	 * 
+	 * @param p
+	 *            the point to add
+	 */
+	public void addPoint(Point p) {
 		node.add(p);
 	}
 
-	public Point getSeed(){
+	/**
+	 * 
+	 * @return the stating location
+	 */
+	public Point getSeed() {
 		return seed;
 	}
-	
+
+	/**
+	 * 
+	 * @return the requested node
+	 */
 	public ArrayList<Point> getNodes() {
 		return node;
 	}
 
-	public int getID() {
-		return ID;
-	}
-	
+	/**
+	 * 
+	 * @return the type of biome
+	 */
 	public int getType() {
 		return type;
 	}
-	
-	public int getCurrentSize(){
+
+	/**
+	 * 
+	 * @return number of nodes in the biome
+	 */
+	public int getCurrentSize() {
 		return node.size();
 	}
 }

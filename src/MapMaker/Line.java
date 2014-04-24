@@ -11,8 +11,6 @@ public class Line {
 	private static final int RIGHT = 2;
 	private static final int LEFT = 3;
 
-	private static final int THICK = 1;
-
 	private static Random rand = new Random();
 
 	private static Point b;
@@ -27,10 +25,11 @@ public class Line {
 			// System.out.println(focus);
 			focus = nextPoint(focus);
 			list.add(focus);
-			list.addAll(surroundPoints(focus));
+//			list.addAll(surroundPoints(focus));
 		}
 
-		return removeDuplicates(list);
+//		return removeDuplicates(list);
+		return list;
 	}
 
 	public static double distance(Point c, Point d) {
@@ -47,7 +46,7 @@ public class Line {
 		possiblePoints.add(LEFT, new Point(p.x - 1, p.y));
 
 		// adds randomness to mountain creation
-		if (rand.nextInt(10) < 4) {
+		if (rand.nextInt(10) < 6) {
 			index = rand.nextInt(4);
 		} else {
 

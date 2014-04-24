@@ -26,6 +26,9 @@ public class Game {
 	private ActiveUnit currentUnit;
 	private UnitManager uManager;
 	private UnitDisplay unitWindow;
+	private final int MAP_SIZE = 300;
+	private final int cameraSpeed = MAP_SIZE / 2;
+	
 
 	// private Reticule reticule;
 
@@ -48,7 +51,7 @@ public class Game {
 
 		// initialize the map
 		// map = new Map(32, 32, "map.txt");
-		map = new Map(32, 32, 80, 80);
+		map = new Map(32, 32, MAP_SIZE, MAP_SIZE);
 
 		generator = new RandomUnitGenerator(map);
 		uManager = generator.getUnits();
@@ -120,13 +123,13 @@ public class Game {
 	private void checkMousePosition() {
 		if (Mouse.isButtonPressed(Mouse.Button.LEFT)) {
 			Point a = MouseMonitor.getMousePosition(window);
-			System.out.println(a.getX() + " " + a.getY());
+//			System.out.println(a.getX() + " " + a.getY());
 		}
 	}
 
 	private Point getMousePosition() {
 		Point p = MouseMonitor.getMousePosition(window);
-		System.out.println("---" + p.getXTile() + " " + p.getYTile() + "---");
+//		System.out.println("---" + p.getXTile() + " " + p.getYTile() + "---");
 		return p;
 	}
 
@@ -141,11 +144,11 @@ public class Game {
 							.getYTile()) {
 				selectID = i;
 				currentUnit = uManager.getUnit(selectID);
-				System.out.println("TRUE");
+//				System.out.println("TRUE");
 				return;
 			}
 		}
-		System.out.println("FALSE");
+//		System.out.println("FALSE");
 	}
 
 	private void checkInput() throws FileNotFoundException {
@@ -154,22 +157,22 @@ public class Game {
 			// camera moving commands
 			if (Keyboard.isKeyPressed(Key.W)) {
 				// actor.updateY((float) -1);
-				camera.update(0, -10);
+				camera.update(0, -1 * cameraSpeed);
 				// System.out.println(camera.getX() + " " + camera.getY());
 			}
 			if (Keyboard.isKeyPressed(Key.S)) {
 				// actor.updateY((float) 1);
-				camera.update(0, 10);
+				camera.update(0, cameraSpeed);
 				// System.out.println(camera.getX() + " " + camera.getY());
 			}
 			if (Keyboard.isKeyPressed(Key.A)) {
 				// actor.updateX((float) -1);
-				camera.update(-10, 0);
+				camera.update(-1 * cameraSpeed, 0);
 				// System.out.println(camera.getX() + " " + camera.getY());
 			}
 			if (Keyboard.isKeyPressed(Key.D)) {
 				// actor.updateX((float) 1);
-				camera.update(10, 0);
+				camera.update(cameraSpeed, 0);
 				// System.out.println(camera.getX() + " " + camera.getY());
 			}
 
