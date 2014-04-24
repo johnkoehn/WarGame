@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.window.ContextActivationException;
 import org.jsfml.window.Keyboard;
 import org.jsfml.window.Keyboard.Key;
 import org.jsfml.window.Mouse;
@@ -75,13 +76,19 @@ public class Game {
 	/**
 	 * This function will keep looping until we quit the game
 	 * @throws FileNotFoundException 
+	 * @throws ContextActivationException 
 	 */
-	void runGame() throws FileNotFoundException {
+	void runGame() throws FileNotFoundException, ContextActivationException {
 		unitWindow = new UnitDisplay(window);
+		window.setFramerateLimit(60);
+		
 		while (window.isOpen()) {
+			
 			// check for new window events that occurred since the last loop
 			// iteration
 			event = window.pollEvent();
+			
+			
 			if (event != null) {
 				// if a close requested event occurs, close the window
 				if (event.type == Type.CLOSED) {
@@ -102,11 +109,11 @@ public class Game {
 
 				// draw the Actors
 				uManager.draw(window);
-				// reticule.draw(window);
 
 				window.display();
 				unitWindow.drawUnitInfo(currentUnit);
 				unitWindow.displayWindow();
+				
 
 				// checkMousePosition();
 				// getMousePosition();
@@ -242,7 +249,7 @@ public class Game {
 		map.draw(window);
 	}
 
-	public static void main(String args[]) throws IOException {
+	public static void main(String args[]) throws IOException, ContextActivationException {
 		Game game = new Game(800, 600, "WarGame!");
 		game.runGame();
 	}
