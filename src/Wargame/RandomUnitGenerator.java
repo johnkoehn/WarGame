@@ -58,7 +58,7 @@ public class RandomUnitGenerator
 	
 	private void createUnits(Map map) throws IOException
 	{
-		for(int i = 0; i < 5; i++)
+		for(int i = 0; i < 300; i++)
 		{
 			//get ID of random unit to create
 			int ID = 1;
@@ -77,7 +77,6 @@ public class RandomUnitGenerator
 			
 			//calculate this position in tile term
 			int indexPosition = (xPos * height) + yPos;
-			System.out.println(indexPosition);
 			
 			//now set the tile to being occupied
 			ArrayList<Tile> tiles = map.getTileList();
