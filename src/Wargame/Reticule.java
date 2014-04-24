@@ -9,7 +9,7 @@ public class Reticule {
 
 	public Reticule(Point p) throws IOException {
 
-		//r = new Actor(p, "./Reti.png");
+		r = new Actor(p, "./Reti.png");
 	}
 
 	public void draw(RenderWindow window) {
