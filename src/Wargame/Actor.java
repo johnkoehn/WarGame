@@ -29,7 +29,8 @@ public class Actor {
 		actor.setPosition(p.getX(), p.getY());
 	}
 
-	public Actor(Point p, String textureFile) throws IOException {
+	public Actor(Point location, String textureFile) throws IOException {
+		p = location;
 		texture = new Texture();
 
 		// load the texture
@@ -67,6 +68,7 @@ public class Actor {
 
 	public void updatePoint(Point newP) {
 		p = newP;
+		actor.setPosition(p.getX(), p.getY());
 		// actor.move(, arg1);
 	}
 

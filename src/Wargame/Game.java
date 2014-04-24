@@ -28,7 +28,7 @@ public class Game {
 	private UnitDisplay unitWindow;
 	private final int MAP_SIZE = 300;
 	private final int cameraSpeed = MAP_SIZE / 2;
-	
+	private CollisionManager cManager;
 
 	// private Reticule reticule;
 
@@ -50,7 +50,6 @@ public class Game {
 		window = new RenderWindow(mode, title);
 
 		// initialize the map
-		// map = new Map(32, 32, "map.txt");
 		map = new Map(32, 32, MAP_SIZE, MAP_SIZE);
 
 		generator = new RandomUnitGenerator(map);
@@ -59,6 +58,8 @@ public class Game {
 		camera = new Camera(0, 0, winWidth, winHeight);
 		selectID = 0;
 		setViewToActor();
+		
+		cManager = new CollisionManager(map);
 
 		// RandomMapGenerator.makeMap(50, 50);
 		// reticule = new Reticule(MouseMonitor.getMousePosition(window));
@@ -195,16 +196,20 @@ public class Game {
 
 			// moving active unit commands
 			if (Keyboard.isKeyPressed(Key.UP)) {
-				currentUnit.moveUp();
+				//currentUnit.moveUp();
+				cManager.moveUnit(currentUnit, 0, -1);
 			}
 			if (Keyboard.isKeyPressed(Key.DOWN)) {
-				currentUnit.moveDown();
+				//currentUnit.moveDown();
+				cManager.moveUnit(currentUnit, 0, 1);
 			}
 			if (Keyboard.isKeyPressed(Key.LEFT)) {
-				currentUnit.moveLeft();
+				//currentUnit.moveLeft();
+				cManager.moveUnit(currentUnit, -1, 0);
 			}
 			if (Keyboard.isKeyPressed(Key.RIGHT)) {
-				currentUnit.moveRight();
+				//currentUnit.moveRight();
+				cManager.moveUnit(currentUnit, 1, 0);
 			}
 			
 			// refresh map

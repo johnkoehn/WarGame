@@ -1,6 +1,7 @@
 package Wargame;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 import org.jsfml.graphics.RenderWindow;
@@ -38,6 +39,9 @@ public class RandomUnitGenerator
 	 */
 	private Random random;
 	
+	/**
+	 * Library storing the units the game has
+	 */
 	private UnitLibrary uLibrary;
 	
 	public RandomUnitGenerator(Map map) throws IOException
@@ -49,12 +53,12 @@ public class RandomUnitGenerator
 		height = map.mapHeightTiles();
 		tileDeminsions = new Point(map.getTileWidth(), map.getTileHeight());
 		
-		createUnits();
+		createUnits(map);
 	}
 	
-	private void createUnits() throws IOException
+	private void createUnits(Map map) throws IOException
 	{
-		for(int i = 0; i < 50; i++)
+		for(int i = 0; i < 5; i++)
 		{
 			//get ID of random unit to create
 			int ID = 1;
@@ -71,9 +75,17 @@ public class RandomUnitGenerator
 			int xPos = random.nextInt(width);
 			int yPos = random.nextInt(height);
 			
+			//calculate this position in tile term
+			int indexPosition = (xPos * height) + yPos;
+			System.out.println(indexPosition);
+			
+			//now set the tile to being occupied
+			ArrayList<Tile> tiles = map.getTileList();
+			tiles.get(indexPosition).setOccupied();
+			
 			//update xPos and yPos to pixel coordinates
-			xPos = (int) ((xPos * tileDeminsions.getX()) + (tileDeminsions.getX()));
-			yPos = (int) ((yPos * tileDeminsions.getY()) + (tileDeminsions.getY()));
+			xPos = (int) ((xPos * tileDeminsions.getX()));
+			yPos = (int) ((yPos * tileDeminsions.getY()));
 			
 			//add this to the unit manager now
 			uManager.addUnit(1, tempUnit, xPos, yPos, "./unit_1.png");
