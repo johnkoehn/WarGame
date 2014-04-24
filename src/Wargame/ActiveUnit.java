@@ -102,8 +102,13 @@ public class ActiveUnit extends Actor {
 	}
 
 	public void deductMovePoints(int loss) {
+		
 		if (loss > 0) {
-			currentMovePoints = Math.max(0, currentMovePoints - loss);
+			currentMovePoints -= loss;
+			if (currentMovePoints < 0)
+			{
+				currentMovePoints = 0;
+			}
 		}
 	}
 
