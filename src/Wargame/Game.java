@@ -190,16 +190,16 @@ public class Game {
 
 			// moving active unit commands
 			if (Keyboard.isKeyPressed(Key.UP)) {
-				currentUnit.moveUp();
+				currentUnit.moveUp(map);
 			}
 			if (Keyboard.isKeyPressed(Key.DOWN)) {
-				currentUnit.moveDown();
+				currentUnit.moveDown(map);
 			}
 			if (Keyboard.isKeyPressed(Key.LEFT)) {
-				currentUnit.moveLeft();
+				currentUnit.moveLeft(map);
 			}
 			if (Keyboard.isKeyPressed(Key.RIGHT)) {
-				currentUnit.moveRight();
+				currentUnit.moveRight(map);
 			}
 		}
 	}

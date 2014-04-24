@@ -146,49 +146,69 @@ public class ActiveUnit extends Actor {
 	/**
 	 * Unit movement commands
 	 */
-	public boolean moveLeft()
+	public void moveLeft(Map map)
 	{
 		if ((currentMovePoints - 10) >= 0)
 		{
 			updateX(-32);
 			currentMovePoints -= 10;
-			
-			return true;
 		}
-		return false;
 	}
 	
-	public boolean moveRight()
+	public void moveRight(Map map)
 	{
 		if ((currentMovePoints - 10) >= 0)
 		{
 			updateX(32);
 			currentMovePoints -= 10;
-			
-			return true;
 		}
-		return false;
 	}
 	
-	public boolean moveUp()
+	public void moveUp(Map map)
 	{
 		if ((currentMovePoints - 10) >= 0)
 		{
 			updateY(-32);
 			currentMovePoints -= 10;
 			
-			return true;
 		}
-		return false;
 	}
 	
-	public boolean moveDown()
-	{
+	public void moveDown(Map map)
+	{		
 		if ((currentMovePoints - 10) >= 0)
 		{
-			updateY(32);
-			currentMovePoints -= 10;
 			
+			Point p = getTileLocation();
+			
+			//get current tile
+			int currentTile = (int)(p.getXTile() * map.getTileWidth()) + p.getYTile();
+			int newTile = currentTile + 1;
+			
+			//check collision 
+			if(!checkCollision(newTile, map))
+			{
+				
+				updateY(32);
+				currentMovePoints -= 10;
+
+			}
+			
+			System.out.println(currentTile);
+			System.out.println(newTile);
+
+		}
+	}
+	
+	/**
+	 * Function returns true if there is collision
+	 * @return
+	 */
+	public boolean checkCollision(int tile, Map map)
+	{
+		//get tile, if occupied return true
+		if (map.getTileList().get(tile).isThisOccupied())
+		{
 			return true;
 		}
 		return false;
