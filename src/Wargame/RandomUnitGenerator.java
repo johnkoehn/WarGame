@@ -87,7 +87,15 @@ public class RandomUnitGenerator
 			yPos = (int) ((yPos * tileDeminsions.getY()));
 			
 			//add this to the unit manager now
-			uManager.addUnit(1, tempUnit, xPos, yPos, "./unit_1.png");
+			if(random.nextInt(2) == 0)
+			{
+				uManager.addUnit(1, tempUnit, xPos, yPos, "./unit_2.png");
+			}
+			else 
+			{
+				uManager.addUnit(1, tempUnit, xPos, yPos, "./unit_1.png");
+			}
+
 			
 		}
 		
