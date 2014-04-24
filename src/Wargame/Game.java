@@ -27,7 +27,7 @@ public class Game {
 	private ActiveUnit currentUnit;
 	private UnitManager uManager;
 	private UnitDisplay unitWindow;
-	private final int MAP_SIZE = 300;
+	private final int MAP_SIZE = 150;
 	private final int cameraSpeed = MAP_SIZE / 2;
 	private CollisionManager cManager;
 
