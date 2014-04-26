@@ -1,9 +1,11 @@
 package Wargame;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.window.ContextActivationException;
 import org.jsfml.window.Keyboard;
 import org.jsfml.window.Keyboard.Key;
 import org.jsfml.window.Mouse;
@@ -25,6 +27,9 @@ public class Game {
 	private ActiveUnit currentUnit;
 	private UnitManager uManager;
 	private UnitDisplay unitWindow;
+	private final int MAP_SIZE = 150;
+	private final int cameraSpeed = MAP_SIZE / 2;
+	private CollisionManager cManager;
 
 	// private Reticule reticule;
 
@@ -46,8 +51,7 @@ public class Game {
 		window = new RenderWindow(mode, title);
 
 		// initialize the map
-		// map = new Map(32, 32, "map.txt");
-		map = new Map(32, 32, 150, 150);
+		map = new Map(32, 32, MAP_SIZE, MAP_SIZE);
 
 		generator = new RandomUnitGenerator(map);
 		uManager = generator.getUnits();
@@ -55,6 +59,8 @@ public class Game {
 		camera = new Camera(0, 0, winWidth, winHeight);
 		selectID = 0;
 		setViewToActor();
+		
+		cManager = new CollisionManager(map);
 
 		// RandomMapGenerator.makeMap(50, 50);
 		// reticule = new Reticule(MouseMonitor.getMousePosition(window));
@@ -70,13 +76,20 @@ public class Game {
 
 	/**
 	 * This function will keep looping until we quit the game
+	 * @throws FileNotFoundException 
+	 * @throws ContextActivationException 
 	 */
-	void runGame() {
+	void runGame() throws FileNotFoundException, ContextActivationException {
 		unitWindow = new UnitDisplay(window);
+		window.setFramerateLimit(60);
+		
 		while (window.isOpen()) {
+			
 			// check for new window events that occurred since the last loop
 			// iteration
 			event = window.pollEvent();
+			
+			
 			if (event != null) {
 				// if a close requested event occurs, close the window
 				if (event.type == Type.CLOSED) {
@@ -97,11 +110,11 @@ public class Game {
 
 				// draw the Actors
 				uManager.draw(window);
-				// reticule.draw(window);
 
 				window.display();
 				unitWindow.drawUnitInfo(currentUnit);
 				unitWindow.displayWindow();
+				
 
 				// checkMousePosition();
 				// getMousePosition();
@@ -118,13 +131,13 @@ public class Game {
 	private void checkMousePosition() {
 		if (Mouse.isButtonPressed(Mouse.Button.LEFT)) {
 			Point a = MouseMonitor.getMousePosition(window);
-			System.out.println(a.getX() + " " + a.getY());
+//			System.out.println(a.getX() + " " + a.getY());
 		}
 	}
 
 	private Point getMousePosition() {
 		Point p = MouseMonitor.getMousePosition(window);
-		System.out.println("---" + p.getXTile() + " " + p.getYTile() + "---");
+//		System.out.println("---" + p.getXTile() + " " + p.getYTile() + "---");
 		return p;
 	}
 
@@ -139,35 +152,35 @@ public class Game {
 							.getYTile()) {
 				selectID = i;
 				currentUnit = uManager.getUnit(selectID);
-				System.out.println("TRUE");
+//				System.out.println("TRUE");
 				return;
 			}
 		}
-		System.out.println("FALSE");
+//		System.out.println("FALSE");
 	}
 
-	private void checkInput() {
+	private void checkInput() throws FileNotFoundException {
 		if (event.type == Type.KEY_PRESSED) {
 
 			// camera moving commands
 			if (Keyboard.isKeyPressed(Key.W)) {
 				// actor.updateY((float) -1);
-				camera.update(0, -10);
+				camera.update(0, -1 * cameraSpeed);
 				// System.out.println(camera.getX() + " " + camera.getY());
 			}
 			if (Keyboard.isKeyPressed(Key.S)) {
 				// actor.updateY((float) 1);
-				camera.update(0, 10);
+				camera.update(0, cameraSpeed);
 				// System.out.println(camera.getX() + " " + camera.getY());
 			}
 			if (Keyboard.isKeyPressed(Key.A)) {
 				// actor.updateX((float) -1);
-				camera.update(-10, 0);
+				camera.update(-1 * cameraSpeed, 0);
 				// System.out.println(camera.getX() + " " + camera.getY());
 			}
 			if (Keyboard.isKeyPressed(Key.D)) {
 				// actor.updateX((float) 1);
-				camera.update(10, 0);
+				camera.update(cameraSpeed, 0);
 				// System.out.println(camera.getX() + " " + camera.getY());
 			}
 
@@ -190,16 +203,26 @@ public class Game {
 
 			// moving active unit commands
 			if (Keyboard.isKeyPressed(Key.UP)) {
-				currentUnit.moveUp();
+				//currentUnit.moveUp();
+				cManager.moveUnit(currentUnit, 0, -1);
 			}
 			if (Keyboard.isKeyPressed(Key.DOWN)) {
-				currentUnit.moveDown();
+				//currentUnit.moveDown();
+				cManager.moveUnit(currentUnit, 0, 1);
 			}
 			if (Keyboard.isKeyPressed(Key.LEFT)) {
-				currentUnit.moveLeft();
+				//currentUnit.moveLeft();
+				cManager.moveUnit(currentUnit, -1, 0);
 			}
 			if (Keyboard.isKeyPressed(Key.RIGHT)) {
-				currentUnit.moveRight();
+				//currentUnit.moveRight();
+				cManager.moveUnit(currentUnit, 1, 0);
+			}
+			
+			// refresh map
+			if (Keyboard.isKeyPressed(Key.P)) {
+				map.newMap();
+				displayMap();
 			}
 		}
 	}
@@ -231,7 +254,7 @@ public class Game {
 		map.draw(window);
 	}
 
-	public static void main(String args[]) throws IOException {
+	public static void main(String args[]) throws IOException, ContextActivationException {
 		Game game = new Game(800, 600, "WarGame!");
 		game.runGame();
 	}

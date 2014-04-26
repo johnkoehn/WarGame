@@ -8,6 +8,7 @@ import org.jsfml.graphics.Font;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Text;
 import org.jsfml.system.Vector2i;
+import org.jsfml.window.ContextActivationException;
 import org.jsfml.window.VideoMode;
 
 public class UnitDisplay {
@@ -33,7 +34,7 @@ public class UnitDisplay {
 	}
 
 	// show the current window
-	public void displayWindow() {
+	public void displayWindow() throws ContextActivationException {
 		a.display();
 	}
 
